@@ -20,7 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Icon(Icons.favorite_border_rounded, color: white, size: 30),
         HorizontalSpace(20),
         ChatButton(),
-        HorizontalSpace(5),
+        HorizontalSpace(10),
       ],
     );
   }
