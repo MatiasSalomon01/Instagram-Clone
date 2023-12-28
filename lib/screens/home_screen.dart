@@ -13,10 +13,12 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: const CustomAppBar(),
       body: ListView(
-        children: [
+        children: const [
+          VerticalSpace(10),
           Stories(),
         ],
       ),
+      bottomNavigationBar: const CustomNavigationBar(),
     );
   }
 }
