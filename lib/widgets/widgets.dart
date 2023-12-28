@@ -1,3 +1,5 @@
+export 'package:instagram_clone/widgets/content_item_widget.dart';
+export 'package:instagram_clone/widgets/content_widget.dart';
 export 'package:instagram_clone/widgets/custom_navigation_bar_widget.dart';
 export 'package:instagram_clone/widgets/your_story_widget.dart';
 export 'package:instagram_clone/widgets/story_widget.dart';

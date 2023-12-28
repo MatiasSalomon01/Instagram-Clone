@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:instagram_clone/colors/colors.dart';
 
 import '../widgets/widgets.dart';
@@ -16,6 +15,7 @@ class HomeScreen extends StatelessWidget {
         children: const [
           VerticalSpace(10),
           Stories(),
+          Content(),
         ],
       ),
       bottomNavigationBar: const CustomNavigationBar(),
