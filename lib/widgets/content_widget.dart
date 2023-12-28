@@ -9,7 +9,7 @@ class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: 1,
+      itemCount: 2,
       shrinkWrap: true,
       itemBuilder: (context, index) => const ContentItem(),
       separatorBuilder: (context, index) => const VerticalSpace(15),

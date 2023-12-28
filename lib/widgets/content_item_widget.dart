@@ -11,9 +11,10 @@ class ContentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: 620,
+      // height: 640,
       // color: Colors.amber,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           const VerticalSpace(10),
           Padding(
@@ -21,10 +22,12 @@ class ContentItem extends StatelessWidget {
             child: Row(
               children: const [
                 CircleAvatar(radius: 15),
+                HorizontalSpace(5),
                 Text(
                   'championsleague',
                   style: TextStyle(color: white),
                 ),
+                HorizontalSpace(5),
                 Icon(Icons.verified, color: lightBlue),
                 Spacer(),
                 Icon(
@@ -35,16 +38,15 @@ class ContentItem extends StatelessWidget {
             ),
           ),
           const VerticalSpace(10),
-          Image.asset('assets/ronaldinho.jpg'),
-          // Container(
-          //   height: 400,
-          //   decoration: BoxDecoration(
-          //     color: red,
-          //     image: DecorationImage(
-          //       image: AssetImage('assets/ronaldinho.jpg'),
-          //     ),
-          //   ),
-          // ),
+          Container(
+            height: 400,
+            // constraints: BoxConstraints(maxHeight: 400),
+            child: Image.asset(
+              'assets/paisaje.jpg',
+              // height: 400,
+              fit: BoxFit.cover,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
@@ -55,7 +57,7 @@ class ContentItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: size.width * .2,
+                      width: size.width * .25,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [

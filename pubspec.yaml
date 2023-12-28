@@ -20,3 +20,5 @@ flutter:
   uses-material-design: true
   assets:
     - 'assets/ronaldinho.jpg'
+    - 'assets/skyline.jpg'
+    - 'assets/paisaje.jpg'
