@@ -23,7 +23,7 @@ class Story extends StatelessWidget {
           Stack(
             children: [
               Container(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(3),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
@@ -42,7 +42,7 @@ class Story extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: const CircleAvatar(
-                    radius: 45,
+                    radius: 40,
                     backgroundColor: white,
                     backgroundImage: NetworkImage(
                       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png',

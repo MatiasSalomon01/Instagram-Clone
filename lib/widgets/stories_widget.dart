@@ -10,14 +10,20 @@ class Stories extends StatelessWidget {
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
     return SizedBox(
-      height: 140,
-      child: ListView.separated(
-        itemCount: stories.length,
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        itemBuilder: (context, index) => Story(username: stories[index]),
-        separatorBuilder: (context, index) => const HorizontalSpace(15),
+      height: 130,
+      child: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (notification) {
+          notification.disallowIndicator();
+          return false;
+        },
+        child: ListView.separated(
+          itemCount: stories.length,
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          itemBuilder: (context, index) => Story(username: stories[index]),
+          separatorBuilder: (context, index) => const HorizontalSpace(15),
+        ),
       ),
     );
   }

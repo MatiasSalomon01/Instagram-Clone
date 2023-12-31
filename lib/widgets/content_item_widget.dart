@@ -18,37 +18,31 @@ class ContentItem extends StatelessWidget {
         children: [
           const VerticalSpace(10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
               children: const [
-                CircleAvatar(radius: 15),
-                HorizontalSpace(5),
+                CircleAvatar(radius: 18),
+                HorizontalSpace(10),
                 Text(
                   'championsleague',
                   style: TextStyle(color: white),
                 ),
                 HorizontalSpace(5),
-                Icon(Icons.verified, color: lightBlue),
+                Icon(Icons.verified, color: lightBlue, size: 18),
                 Spacer(),
-                Icon(
-                  Icons.more_vert,
-                  color: white,
-                ),
+                Icon(Icons.more_vert, color: white),
               ],
             ),
           ),
-          const VerticalSpace(10),
-          Container(
-            height: 400,
-            // constraints: BoxConstraints(maxHeight: 400),
-            child: Image.asset(
-              'assets/paisaje.jpg',
-              // height: 400,
-              fit: BoxFit.cover,
-            ),
+          const VerticalSpace(15),
+          Image.network(
+            'https://pbs.twimg.com/media/FqtnngIXoAQ_Z9z.jpg:large',
+            fit: BoxFit.cover,
+            height: 450,
+            width: size.width,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -132,7 +126,7 @@ class ContentItem extends StatelessWidget {
                 const VerticalSpace(6),
                 Text(
                   'Hace 2 días',
-                  style: TextStyle(color: whiteOpaque),
+                  style: TextStyle(color: whiteOpaque, fontSize: 13),
                 ),
               ],
             ),

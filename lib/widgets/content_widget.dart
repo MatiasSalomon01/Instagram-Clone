@@ -11,6 +11,7 @@ class Content extends StatelessWidget {
     return ListView.separated(
       itemCount: 2,
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) => const ContentItem(),
       separatorBuilder: (context, index) => const VerticalSpace(15),
     );
