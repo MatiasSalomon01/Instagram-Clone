@@ -26,15 +26,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: const CustomDivider(height: 0),
         ),
       ),
-      // notificationPredicate: (notification) => isAtEdge(notification, provider),
-      notificationPredicate: (notification) {
-        if (notification.metrics.atEdge && notification.metrics.pixels == 0) {
-          provider.isAtEdge = true;
-        } else if (provider.isAtEdge) {
-          provider.isAtEdge = false;
-        }
-        return false;
-      },
       title: Text(
         'Instagram',
         style: GoogleFonts.lobster(color: white, fontSize: 25),
@@ -45,6 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ChatButton(),
         HorizontalSpace(10),
       ],
+      notificationPredicate: (notification) => isAtEdge(notification, provider),
     );
   }
 
@@ -52,22 +44,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     ScrollNotification notification,
     CustomAppBarProvider provider,
   ) {
-    if (notification.metrics.pixels == 0 && notification.metrics.atEdge) {
+    if (notification.metrics.atEdge && notification.metrics.pixels == 0) {
       provider.isAtEdge = true;
-    }
-
-    if (!notification.metrics.atEdge && provider.isAtEdge) {
+    } else if (provider.isAtEdge) {
       provider.isAtEdge = false;
     }
-
-    // if (notification.metrics.pixels == 0 && !provider.isAtEdge) {
-    //   provider.isAtEdge = true;
-    // }
-    // if (notification.metrics.pixels > 0 && provider.isAtEdge) {
-    //   provider.isAtEdge = false;
-    // }
-
-    return true;
+    return false;
   }
 
   @override
