@@ -11,8 +11,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CustomAppBarProvider>(context, listen: false);
-
     return AppBar(
       elevation: 0,
       backgroundColor: transparent,
@@ -21,7 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Consumer<CustomAppBarProvider>(
           builder: (context, provider, child) {
             print('CustomAppBar redibuja CustomDivider');
-            return provider.isAtEdge ? Container() : child!;
+            return provider.showDivider ? Container() : child!;
           },
           child: const CustomDivider(height: 0),
         ),
@@ -36,20 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ChatButton(),
         HorizontalSpace(10),
       ],
-      notificationPredicate: (notification) => isAtEdge(notification, provider),
     );
-  }
-
-  bool isAtEdge(
-    ScrollNotification notification,
-    CustomAppBarProvider provider,
-  ) {
-    if (notification.metrics.atEdge && notification.metrics.pixels == 0) {
-      provider.isAtEdge = true;
-    } else if (provider.isAtEdge) {
-      provider.isAtEdge = false;
-    }
-    return false;
   }
 
   @override
