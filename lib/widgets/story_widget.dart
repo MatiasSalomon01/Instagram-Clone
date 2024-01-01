@@ -16,7 +16,7 @@ class Story extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 100),
+      constraints: const BoxConstraints(maxWidth: 87),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -76,7 +76,7 @@ class Story extends StatelessWidget {
                 ),
             ],
           ),
-          const VerticalSpace(12),
+          const VerticalSpace(5),
           Text(
             username,
             overflow: TextOverflow.ellipsis,

@@ -10,7 +10,7 @@ class Stories extends StatelessWidget {
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
     return SizedBox(
-      height: 130,
+      height: 120,
       child: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (notification) {
           notification.disallowIndicator();
@@ -20,7 +20,7 @@ class Stories extends StatelessWidget {
           itemCount: stories.length,
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           itemBuilder: (context, index) => Story(username: stories[index]),
           separatorBuilder: (context, index) => const HorizontalSpace(15),
         ),
