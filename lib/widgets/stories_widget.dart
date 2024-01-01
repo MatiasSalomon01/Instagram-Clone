@@ -21,7 +21,7 @@ class Stories extends StatelessWidget {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          itemBuilder: (context, index) => Story(username: stories[index]),
+          itemBuilder: (context, index) => Story(model: stories[index]),
           separatorBuilder: (context, index) => const HorizontalSpace(15),
         ),
       ),

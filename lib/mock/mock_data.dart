@@ -1,6 +1,9 @@
+import 'package:instagram_clone/models/models.dart';
+
 final stories = [
-  "usuario1",
-  "usuario_username__-2232",
-  "theassassinbaby",
-  "juan_perez_crack",
+  StoryModel(username: "Tu historia", isMe: true),
+  StoryModel(username: "usuario1", hasStories: true),
+  StoryModel(username: "usuario_username__-2232", hasStories: true),
+  StoryModel(username: "theassassinbaby", hasStories: true),
+  StoryModel(username: "juan_perez_crack"),
 ];

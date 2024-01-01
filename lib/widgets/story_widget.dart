@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
 import '../colors/colors.dart';
+import '../models/models.dart';
 
 class Story extends StatelessWidget {
-  const Story({
-    super.key,
-    required this.username,
-    this.myStory = false,
-  });
+  const Story({super.key, required this.model});
 
-  final String username;
-  final bool myStory;
+  final StoryModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +20,19 @@ class Story extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(3),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xffd400c6),
-                      Color(0xfffcc65a),
-                    ],
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                  ),
-                ),
+                decoration: model.hasStories
+                    ? const BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xffd400c6),
+                            Color(0xfffcc65a),
+                          ],
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                        ),
+                      )
+                    : null,
                 child: Container(
                   padding: const EdgeInsets.all(3),
                   decoration: const BoxDecoration(
@@ -50,24 +48,24 @@ class Story extends StatelessWidget {
                   ),
                 ),
               ),
-              if (myStory)
+              if (model.isMe)
                 Positioned(
                   bottom: 8,
                   right: -2,
                   child: Container(
-                    padding: const EdgeInsets.all(3),
+                    padding: const EdgeInsets.all(2),
                     decoration: const BoxDecoration(
                       color: backgroundColor,
                       shape: BoxShape.circle,
                     ),
                     child: Container(
-                      padding: const EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(2),
                       decoration: const BoxDecoration(
                         color: lightBlue,
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
-                        Icons.add,
+                        Icons.add_rounded,
                         color: white,
                         size: 20,
                       ),
@@ -78,7 +76,7 @@ class Story extends StatelessWidget {
           ),
           const VerticalSpace(5),
           Text(
-            username,
+            model.username,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: const TextStyle(color: white),
