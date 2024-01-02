@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/icons/icons.dart';
 import 'package:instagram_clone/providers/providers.dart';
 import 'package:provider/provider.dart';
@@ -25,26 +24,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: const CustomDivider(),
         ),
       ),
-      title: SvgPicture.string(
-        instagramLogo,
-        height: 32,
-        colorFilter: const ColorFilter.mode(
-          white,
-          BlendMode.srcIn,
-        ),
-      ),
-      actions: [
-        SvgPicture.string(
-          favoriteIcon,
-          height: 25,
-          colorFilter: const ColorFilter.mode(
-            white,
-            BlendMode.srcIn,
-          ),
-        ),
-        // HorizontalSpace(20),
+      title: const SvgString(icon: instagramLogo, height: 32),
+      actions: const [
+        SvgString(icon: favoriteIcon),
         MessageButton(),
-        // HorizontalSpace(10),
       ],
     );
   }

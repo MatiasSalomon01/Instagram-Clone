@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_clone/widgets/widgets.dart';
 
 import '../colors/colors.dart';
 import '../icons/icons.dart';
@@ -19,14 +19,7 @@ class MessageButton extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          SvgPicture.string(
-            messagesIcon,
-            height: 25,
-            colorFilter: const ColorFilter.mode(
-              white,
-              BlendMode.srcIn,
-            ),
-          ),
+          const SvgString(icon: messagesIcon),
           Positioned(
             right: 0,
             top: 0,
