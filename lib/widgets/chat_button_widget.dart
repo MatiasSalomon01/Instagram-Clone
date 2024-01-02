@@ -11,8 +11,11 @@ class MessageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 40,
+    return Container(
+      // width: 40,
+      height: kToolbarHeight - 10,
+      width: 50,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -24,21 +27,26 @@ class MessageButton extends StatelessWidget {
               BlendMode.srcIn,
             ),
           ),
-          // Positioned(
-          //   // right: 0,
-          //   // top: -5,
-          //   child: Container(
-          //     height: 20,
-          //     width: 20,
-          //     alignment: Alignment.center,
-          //     decoration: const BoxDecoration(
-          //       shape: BoxShape.circle,
-          //       color: red,
-          //     ),
-          //     child:
-          //         const Text('5', style: TextStyle(color: white, fontSize: 14)),
-          //   ),
-          // )
+          Positioned(
+            right: 0,
+            top: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: red,
+              ),
+              child: const Text(
+                '11',
+                style: TextStyle(
+                  color: white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

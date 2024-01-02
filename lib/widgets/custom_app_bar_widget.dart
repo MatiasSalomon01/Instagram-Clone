@@ -42,9 +42,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             BlendMode.srcIn,
           ),
         ),
-        HorizontalSpace(20),
+        // HorizontalSpace(20),
         MessageButton(),
-        HorizontalSpace(10),
+        // HorizontalSpace(10),
       ],
     );
   }
