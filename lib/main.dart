@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/providers/providers.dart';
 import 'package:instagram_clone/routes/routes.dart';
+import 'package:instagram_clone/services/services.dart';
 import 'package:instagram_clone/theme/custom_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,6 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CustomAppBarProvider()),
-        ChangeNotifierProvider(create: (context) => NavigatorProvider()),
       ],
       child: const MainApp(),
     );
@@ -31,6 +31,7 @@ class MainApp extends StatelessWidget {
       initialRoute: Routes.home,
       routes: Routes.mapRoutes,
       theme: CustomTheme.lightMode,
+      navigatorObservers: [NavigatorObserverService()],
     );
   }
 }

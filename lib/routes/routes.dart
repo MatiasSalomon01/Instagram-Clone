@@ -15,4 +15,12 @@ class Routes {
     reels: (context) => const ReelsScreen(),
     user: (context) => const UserScreen()
   };
+
+  static Map<String, Widget> mapRoutes2 = {
+    home: const HomeScreen(),
+    search: const SearchScreen(),
+    create: const CreateScreen(),
+    reels: const ReelsScreen(),
+    user: const UserScreen()
+  };
 }
