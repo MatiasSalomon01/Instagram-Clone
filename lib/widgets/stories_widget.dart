@@ -10,7 +10,7 @@ class Stories extends StatelessWidget {
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
     return SizedBox(
-      height: 120,
+      height: 124,
       child: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (notification) {
           notification.disallowIndicator();

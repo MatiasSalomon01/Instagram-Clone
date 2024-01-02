@@ -14,3 +14,10 @@ final content = [
   StoryModel(username: "theassassinbaby", hasStories: true),
   StoryModel(username: "juan_perez_crack", isVerified: true),
 ];
+
+final likedBy = [
+  StoryModel(username: "usuario1", isVerified: true),
+  StoryModel(username: "usuario_username__-2232"),
+  StoryModel(username: "theassassinbaby"),
+  StoryModel(username: "juan_perez_crack", isVerified: true),
+];

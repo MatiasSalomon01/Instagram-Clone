@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         children: const [
           VerticalSpace(10),
           Stories(),
-          CustomDivider(marginPadding: 5),
+          CustomDivider(),
           Content(),
         ],
       ),

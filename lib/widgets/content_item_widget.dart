@@ -3,6 +3,8 @@ import 'package:instagram_clone/colors/colors.dart';
 import 'package:instagram_clone/models/models.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
+import '../mock/mock_data.dart';
+
 class ContentItem extends StatelessWidget {
   const ContentItem({super.key, required this.model});
 
@@ -17,12 +19,10 @@ class ContentItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const VerticalSpace(8),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
             child: Row(
               children: [
-                // CircleAvatar(radius: 18),
                 ProfilePicture(
                   model: model,
                   radius: 16,
@@ -41,7 +41,6 @@ class ContentItem extends StatelessWidget {
               ],
             ),
           ),
-          const VerticalSpace(13),
           Image.network(
             'https://pbs.twimg.com/media/FqtnngIXoAQ_Z9z.jpg:large',
             fit: BoxFit.cover,
@@ -49,11 +48,10 @@ class ContentItem extends StatelessWidget {
             width: size.width,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const VerticalSpace(10),
+                const VerticalSpace(12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -62,7 +60,11 @@ class ContentItem extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
-                          Icon(Icons.favorite_border_outlined, color: white),
+                          Icon(
+                            Icons.favorite_border_outlined,
+                            color: white,
+                            size: 28,
+                          ),
                           Icon(Icons.comment_outlined, color: white),
                           Icon(Icons.share_outlined, color: white),
                         ],
@@ -78,63 +80,83 @@ class ContentItem extends StatelessWidget {
                   ],
                 ),
                 const VerticalSpace(10),
-                Row(
-                  children: [
-                    Text.rich(
-                      TextSpan(
-                        text: 'Les gusta ',
-                        style: TextStyle(color: white),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
                         children: [
-                          TextSpan(
-                            text: 'theassassinbaby ',
-                            style: TextStyle(
-                              color: white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          ProfilePicture(
+                            model: likedBy[0],
+                            radius: 10,
+                            padding: 0,
                           ),
-                          TextSpan(text: 'y ', style: TextStyle(color: white)),
-                          TextSpan(
-                            text: '1,066,905 personas más',
-                            style: TextStyle(
-                              color: white,
-                              fontWeight: FontWeight.bold,
+                          const HorizontalSpace(10),
+                          const Expanded(
+                            child: Text.rich(
+                              TextSpan(
+                                text: 'Les gusta ',
+                                style: TextStyle(color: white),
+                                children: [
+                                  TextSpan(
+                                    text: 'theassassinbaby ',
+                                    style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                      text: 'y ',
+                                      style: TextStyle(color: white)),
+                                  TextSpan(
+                                    text: '1,066,905 personas más',
+                                    style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-                const VerticalSpace(6),
-                Text.rich(
-                  TextSpan(
-                    text: 'championsleague ',
-                    style: TextStyle(
-                      color: white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    children: [
-                      TextSpan(
-                        text:
-                            'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-                        style: TextStyle(
-                          color: white,
-                          fontWeight: FontWeight.w100,
+                      const VerticalSpace(6),
+                      Text.rich(
+                        TextSpan(
+                          text: 'championsleague ',
+                          style: TextStyle(
+                            color: white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                              style: TextStyle(
+                                color: white,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            )
+                          ],
                         ),
-                      )
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const VerticalSpace(6),
+                      Text(
+                        'Ver los 6,053 comentarios',
+                        style: TextStyle(color: whiteOpaque),
+                      ),
+                      const VerticalSpace(6),
+                      Text(
+                        'Hace 2 días',
+                        style: TextStyle(color: whiteOpaque, fontSize: 13),
+                      ),
                     ],
                   ),
-                ),
-                const VerticalSpace(6),
-                Text(
-                  'Ver los 6,053 comentarios',
-                  style: TextStyle(color: whiteOpaque),
-                ),
-                const VerticalSpace(6),
-                Text(
-                  'Hace 2 días',
-                  style: TextStyle(color: whiteOpaque, fontSize: 13),
-                ),
+                )
               ],
             ),
           )
