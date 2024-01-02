@@ -9,14 +9,30 @@ extension DateTimeExtensions on DateTime {
     final now = DateTime.now();
     final current = DateTime(year, month, day, hour, minute, second);
     final difference = now.difference(current);
-    if (difference.inDays > 10)
+
+    String word;
+
+    if (difference.inDays > 10) {
       return '${current.day} de ${calendar[current.month]} de ${current.year}';
-    if (difference.inDays > 0 && difference.inDays <= 10)
-      return 'Hace ${difference.inDays} días';
-    if (difference.inDays == 0 && difference.inSeconds > 60)
-      return 'Hace ${difference.inMinutes} minutos';
-    if (difference.inDays == 0 && difference.inMinutes < 1)
-      return 'Hace ${difference.inSeconds} segundos';
+    }
+
+    if (difference.inDays > 0 && difference.inDays <= 10) {
+      var value = difference.inDays;
+      word = value == 1 ? 'día' : 'días';
+      return 'Hace $value $word';
+    }
+
+    if (difference.inDays == 0 && difference.inSeconds > 60) {
+      var value = difference.inMinutes;
+      word = value == 1 ? 'minuto' : 'minutos';
+      return 'Hace $value $word';
+    }
+
+    if (difference.inDays == 0 && difference.inMinutes < 1) {
+      var value = difference.inSeconds;
+      word = value == 1 ? 'segundo' : 'segundos';
+      return 'Hace $value $word';
+    }
     return '';
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/icons.dart';
+import 'package:instagram_clone/constants/others.dart';
 import 'package:instagram_clone/routes/routes.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
@@ -21,17 +22,27 @@ class CustomNavigationBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SvgString(icon: homeIcon),
-              SvgString(icon: searchIcon),
-              SvgString(icon: createIcon),
-              SvgString(icon: reelsIcon),
+              _Item(
+                icon: SvgString(icon: homeIcon),
+                routeName: Routes.home,
+              ),
+              _Item(
+                icon: SvgString(icon: searchIcon),
+                routeName: Routes.search,
+              ),
+              _Item(
+                icon: SvgString(icon: createIcon),
+                routeName: Routes.create,
+              ),
+              _Item(
+                icon: SvgString(icon: reelsIcon),
+                routeName: Routes.reels,
+              ),
               _Item(
                 icon: CircleAvatar(
                   radius: 13,
                   backgroundColor: white,
-                  backgroundImage: NetworkImage(
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png',
-                  ),
+                  backgroundImage: NetworkImage(defaultProfilePicture),
                 ),
                 routeName: Routes.user,
               ),
@@ -55,7 +66,7 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushReplacementNamed(context, routeName),
+      onTap: () => Navigator.pushNamed(context, routeName),
       child: icon,
     );
   }

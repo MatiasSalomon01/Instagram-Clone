@@ -19,8 +19,8 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: false,
         controller: provider.mainController,
         physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         children: const [
-          VerticalSpace(10),
           Stories(),
           CustomDivider(),
           Content(),
