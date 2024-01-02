@@ -8,9 +8,9 @@ class UserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: backgroundColor,
-      bottomNavigationBar: const CustomNavigationBar(),
+      bottomNavigationBar: CustomNavigationBar(),
     );
   }
 }
