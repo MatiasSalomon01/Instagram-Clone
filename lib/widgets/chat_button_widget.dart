@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
-import '../colors/colors.dart';
-import '../icons/icons.dart';
+import '../constants/colors.dart';
+import '../constants/icons.dart';
 
 class MessageButton extends StatelessWidget {
   const MessageButton({

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/colors/colors.dart';
-import 'package:instagram_clone/icons/icons.dart';
+import 'package:instagram_clone/constants/colors.dart';
+import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/models/models.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
+import 'package:mock_data/mock_data.dart';
 
 import '../mock/mock_data.dart';
 
@@ -40,7 +41,8 @@ class ContentItem extends StatelessWidget {
           ),
         ),
         Image.network(
-          'https://pbs.twimg.com/media/FqtnngIXoAQ_Z9z.jpg:large',
+          // 'https://pbs.twimg.com/media/FqtnngIXoAQ_Z9z.jpg:large',
+          model.profilePictureUrl!,
           fit: BoxFit.cover,
           height: 450,
           width: size.width,
@@ -76,29 +78,31 @@ class ContentItem extends StatelessWidget {
                     Row(
                       children: [
                         ProfilePicture(
-                          model: likedBy[0],
+                          model: content[0],
                           radius: 10,
                           padding: 0,
                         ),
                         const HorizontalSpace(10),
-                        const Expanded(
+                        Expanded(
                           child: Text.rich(
                             TextSpan(
                               text: 'Les gusta ',
-                              style: TextStyle(color: white),
+                              style: const TextStyle(color: white),
                               children: [
                                 TextSpan(
-                                  text: 'theassassinbaby ',
-                                  style: TextStyle(
+                                  text:
+                                      '${content[mockInteger(0, content.length - 1)].username} ',
+                                  style: const TextStyle(
                                     color: white,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                TextSpan(
+                                const TextSpan(
                                     text: 'y ', style: TextStyle(color: white)),
                                 TextSpan(
-                                  text: '1,066,905 personas más',
-                                  style: TextStyle(
+                                  text:
+                                      '${(content.length - 1).toString()} personas más',
+                                  style: const TextStyle(
                                     color: white,
                                     fontWeight: FontWeight.bold,
                                   ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/icons/icons.dart';
+import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/providers/providers.dart';
 import 'package:provider/provider.dart';
 
-import '../colors/colors.dart';
+import '../constants/colors.dart';
 import 'widgets.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

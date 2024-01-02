@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/constants/others.dart';
 
-import '../colors/colors.dart';
+import '../constants/colors.dart';
 import '../models/models.dart';
 
 class ProfilePicture extends StatelessWidget {
@@ -43,8 +44,8 @@ class ProfilePicture extends StatelessWidget {
             child: CircleAvatar(
               radius: radius,
               backgroundColor: white,
-              backgroundImage: const NetworkImage(
-                'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png',
+              backgroundImage: NetworkImage(
+                model.profilePictureUrl ?? defaultProfilePicture,
               ),
             ),
           ),

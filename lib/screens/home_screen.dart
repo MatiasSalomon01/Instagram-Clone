@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/colors/colors.dart';
+import 'package:instagram_clone/constants/colors.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/providers.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/icons/icons.dart';
+import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/routes/routes.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
-import '../colors/colors.dart';
+import '../constants/colors.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({

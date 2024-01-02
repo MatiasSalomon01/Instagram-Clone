@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
-import '../colors/colors.dart';
+import '../constants/colors.dart';
 import '../models/models.dart';
 
 class Story extends StatelessWidget {

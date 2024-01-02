@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagram_clone/colors/colors.dart';
+import 'package:instagram_clone/constants/colors.dart';
 
 class SvgString extends StatelessWidget {
   const SvgString({
