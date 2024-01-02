@@ -13,7 +13,8 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => CustomAppBarProvider())
+        ChangeNotifierProvider(create: (context) => CustomAppBarProvider()),
+        ChangeNotifierProvider(create: (context) => NavigatorProvider()),
       ],
       child: const MainApp(),
     );

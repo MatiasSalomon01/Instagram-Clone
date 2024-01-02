@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/constants/others.dart';
+import 'package:instagram_clone/providers/providers.dart';
 import 'package:instagram_clone/routes/routes.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/colors.dart';
 
@@ -23,23 +25,29 @@ class CustomNavigationBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _Item(
-                icon: SvgString(icon: homeIcon),
+                svg: homeIcon,
+                svgSelected: homeIconSelected,
                 routeName: Routes.home,
+                changeToSelected: true,
               ),
               _Item(
-                icon: SvgString(icon: searchIcon),
+                svg: searchIcon,
+                svgSelected: searchIconSelected,
                 routeName: Routes.search,
+                changeToSelected: true,
               ),
               _Item(
-                icon: SvgString(icon: createIcon),
+                widget: SvgString(icon: createIcon),
                 routeName: Routes.create,
               ),
               _Item(
-                icon: SvgString(icon: reelsIcon),
+                svg: reelsIcon,
+                svgSelected: reelsIconSelected,
                 routeName: Routes.reels,
+                changeToSelected: true,
               ),
               _Item(
-                icon: CircleAvatar(
+                widget: CircleAvatar(
                   radius: 13,
                   backgroundColor: white,
                   backgroundImage: NetworkImage(defaultProfilePicture),
@@ -56,18 +64,38 @@ class CustomNavigationBar extends StatelessWidget {
 
 class _Item extends StatelessWidget {
   const _Item({
-    required this.icon,
+    this.widget = const SizedBox(),
+    this.svg = '',
+    this.svgSelected = '',
     required this.routeName,
+    this.changeToSelected = false,
   });
 
-  final Widget icon;
+  final Widget widget;
+  final String svg;
+  final String svgSelected;
   final String routeName;
+  final bool changeToSelected;
 
   @override
   Widget build(BuildContext context) {
+    final navigatorProvider = context.read<NavigatorProvider>();
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, routeName),
-      child: icon,
+      onTap: () {
+        Navigator.pushNamed(context, routeName);
+        navigatorProvider.currentRoute = routeName;
+      },
+      child: Consumer<NavigatorProvider>(
+        builder: (context, provider, child) {
+          if (changeToSelected) {
+            return provider.currentRoute == routeName
+                ? SvgString(icon: svgSelected)
+                : child!;
+          }
+          return child!;
+        },
+        child: changeToSelected ? SvgString(icon: svg) : widget,
+      ),
     );
   }
 }
