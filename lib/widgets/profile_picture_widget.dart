@@ -4,17 +4,23 @@ import '../colors/colors.dart';
 import '../models/models.dart';
 
 class ProfilePicture extends StatelessWidget {
-  const ProfilePicture({super.key, required this.model, this.radius = 40});
+  const ProfilePicture({
+    super.key,
+    required this.model,
+    this.radius = 40,
+    this.padding = 3,
+  });
 
   final StoryModel model;
   final double radius;
+  final double padding;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          padding: const EdgeInsets.all(3),
+          padding: EdgeInsets.all(padding),
           decoration: model.hasStories
               ? const BoxDecoration(
                   shape: BoxShape.circle,
@@ -29,7 +35,7 @@ class ProfilePicture extends StatelessWidget {
                 )
               : null,
           child: Container(
-            padding: const EdgeInsets.all(3),
+            padding: EdgeInsets.all(padding),
             decoration: const BoxDecoration(
               color: backgroundColor,
               shape: BoxShape.circle,

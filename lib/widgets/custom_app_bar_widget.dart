@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             print('CustomAppBar redibuja CustomDivider');
             return provider.showDivider ? Container() : child!;
           },
-          child: const CustomDivider(height: 0),
+          child: const CustomDivider(),
         ),
       ),
       title: Text(

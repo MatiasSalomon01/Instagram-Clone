@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/colors/colors.dart';
+import 'package:instagram_clone/models/models.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
 class ContentItem extends StatelessWidget {
-  const ContentItem({
-    super.key,
-  });
+  const ContentItem({super.key, required this.model});
+
+  final StoryModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +17,31 @@ class ContentItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const VerticalSpace(10),
+          const VerticalSpace(8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
-              children: const [
-                CircleAvatar(radius: 18),
-                HorizontalSpace(10),
-                Text(
-                  'championsleague',
-                  style: TextStyle(color: white),
+              children: [
+                // CircleAvatar(radius: 18),
+                ProfilePicture(
+                  model: model,
+                  radius: 16,
+                  padding: 2,
                 ),
-                HorizontalSpace(5),
-                Icon(Icons.verified, color: lightBlue, size: 18),
-                Spacer(),
-                Icon(Icons.more_vert, color: white),
+                const HorizontalSpace(10),
+                Text(
+                  model.username,
+                  style: const TextStyle(color: white),
+                ),
+                const HorizontalSpace(5),
+                if (model.isVerified)
+                  const Icon(Icons.verified, color: lightBlue, size: 18),
+                const Spacer(),
+                const Icon(Icons.more_vert, color: white),
               ],
             ),
           ),
-          const VerticalSpace(15),
+          const VerticalSpace(13),
           Image.network(
             'https://pbs.twimg.com/media/FqtnngIXoAQ_Z9z.jpg:large',
             fit: BoxFit.cover,
