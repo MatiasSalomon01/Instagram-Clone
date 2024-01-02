@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_clone/icons/icons.dart';
 import 'package:instagram_clone/providers/providers.dart';
 import 'package:provider/provider.dart';
 
@@ -24,14 +25,25 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: const CustomDivider(),
         ),
       ),
-      title: Text(
-        'Instagram',
-        style: GoogleFonts.lobster(color: white, fontSize: 25),
+      title: SvgPicture.string(
+        instagramLogo,
+        height: 32,
+        colorFilter: const ColorFilter.mode(
+          white,
+          BlendMode.srcIn,
+        ),
       ),
-      actions: const [
-        Icon(Icons.favorite_border_rounded, color: white, size: 30),
+      actions: [
+        SvgPicture.string(
+          favoriteIcon,
+          height: 25,
+          colorFilter: const ColorFilter.mode(
+            white,
+            BlendMode.srcIn,
+          ),
+        ),
         HorizontalSpace(20),
-        ChatButton(),
+        MessageButton(),
         HorizontalSpace(10),
       ],
     );

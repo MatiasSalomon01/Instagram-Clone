@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/colors/colors.dart';
+import 'package:instagram_clone/icons/icons.dart';
 import 'package:instagram_clone/models/models.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
@@ -56,25 +58,43 @@ class ContentItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: size.width * .25,
+                      width: size.width * .3,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Icon(
-                            Icons.favorite_border_outlined,
-                            color: white,
-                            size: 28,
+                        children: [
+                          SvgPicture.string(
+                            favoriteIcon,
+                            height: 25,
+                            colorFilter: const ColorFilter.mode(
+                              white,
+                              BlendMode.srcIn,
+                            ),
                           ),
-                          Icon(Icons.comment_outlined, color: white),
-                          Icon(Icons.share_outlined, color: white),
+                          SvgPicture.string(
+                            commentIcon,
+                            height: 25,
+                            colorFilter: const ColorFilter.mode(
+                              white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                          SvgPicture.string(
+                            shareIcon,
+                            height: 25,
+                            colorFilter: const ColorFilter.mode(
+                              white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Transform.rotate(
-                      angle: 1.58,
-                      child: const Icon(
-                        Icons.label_important_outline_rounded,
-                        color: white,
+                    SvgPicture.string(
+                      saveIcon,
+                      height: 25,
+                      colorFilter: const ColorFilter.mode(
+                        white,
+                        BlendMode.srcIn,
                       ),
                     ),
                   ],

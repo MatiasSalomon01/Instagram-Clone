@@ -8,7 +8,7 @@ class CustomAppBarProvider extends ChangeNotifier {
     mainController.addListener(isAtEdge);
   }
 
-  isAtEdge() {
+  void isAtEdge() {
     if (!mainController.position.atEdge &&
         showDivider &&
         mainController.offset > 0) {
@@ -20,6 +20,7 @@ class CustomAppBarProvider extends ChangeNotifier {
         !showDivider) {
       showDivider = true;
     }
+
     if (mainController.position.atEdge &&
         !showDivider &&
         mainController.offset == 0) {
