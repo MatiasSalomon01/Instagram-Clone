@@ -14,21 +14,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0,
       backgroundColor: transparent,
-      bottom: PreferredSize(
-        preferredSize: Size.zero,
-        child: Consumer<CustomAppBarProvider>(
-          builder: (context, provider, child) {
-            print('CustomAppBar redibuja CustomDivider');
-            return provider.showDivider ? Container() : child!;
-          },
-          child: const CustomDivider(),
-        ),
-      ),
+      automaticallyImplyLeading: false,
       title: const SvgString(icon: instagramLogo, height: 32),
       actions: const [
         SvgString(icon: favoriteIcon),
         MessageButton(),
       ],
+      bottom: PreferredSize(
+        preferredSize: Size.zero,
+        child: Consumer<CustomAppBarProvider>(
+          builder: (context, provider, child) {
+            return provider.showDivider ? Container() : child!;
+          },
+          child: const CustomDivider(),
+        ),
+      ),
     );
   }
 

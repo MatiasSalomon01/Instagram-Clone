@@ -79,23 +79,23 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => Navigator.pushNamed(context, routeName),
-      onTap: () => Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) {
-            return Routes.mapRoutes2[routeName]!;
-          },
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: Tween<double>(begin: 0.8, end: 1).animate(
-                CurvedAnimation(parent: animation, curve: Curves.bounceInOut),
-              ),
-              child: child,
-            );
-          },
-        ),
-      ),
+      onTap: () => Navigator.pushNamed(context, routeName),
+      // onTap: () => Navigator.push(
+      //   context,
+      //   PageRouteBuilder(
+      //     pageBuilder: (context, animation, secondaryAnimation) {
+      //       return Routes.mapRoutes2[routeName]!;
+      //     },
+      //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      //       return FadeTransition(
+      //         opacity: Tween<double>(begin: 0.8, end: 1).animate(
+      //           CurvedAnimation(parent: animation, curve: Curves.bounceInOut),
+      //         ),
+      //         child: child,
+      //       );
+      //     },
+      //   ),
+      // ),
       child: changeToSelected
           ? SvgString(
               icon: NavigatorObserverService.currentRoute == routeName
