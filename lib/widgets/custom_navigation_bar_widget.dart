@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/constants/others.dart';
+import 'package:instagram_clone/providers/providers.dart';
 import 'package:instagram_clone/routes/routes.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/colors.dart';
-import '../services/services.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({
@@ -80,29 +81,15 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, routeName),
-      // onTap: () => Navigator.push(
-      //   context,
-      //   PageRouteBuilder(
-      //     pageBuilder: (context, animation, secondaryAnimation) {
-      //       return Routes.mapRoutes2[routeName]!;
-      //     },
-      //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      //       return FadeTransition(
-      //         opacity: Tween<double>(begin: 0.8, end: 1).animate(
-      //           CurvedAnimation(parent: animation, curve: Curves.bounceInOut),
-      //         ),
-      //         child: child,
-      //       );
-      //     },
-      //   ),
-      // ),
-      child: changeToSelected
-          ? SvgString(
-              icon: NavigatorObserverService.currentRoute == routeName
-                  ? svgSelected
-                  : svg,
-            )
-          : widget,
+      child: Consumer<NavigatorProvider>(
+        builder: (context, value, child) {
+          return changeToSelected
+              ? SvgString(
+                  icon: value.routeName == routeName ? svgSelected : svg,
+                )
+              : widget;
+        },
+      ),
     );
   }
 }

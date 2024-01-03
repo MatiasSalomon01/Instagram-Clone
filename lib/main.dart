@@ -15,6 +15,7 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CustomAppBarProvider()),
+        ChangeNotifierProvider(create: (context) => NavigatorProvider()),
       ],
       child: const MainApp(),
     );
@@ -29,9 +30,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.home,
-      routes: Routes.mapRoutes,
       theme: CustomTheme.lightMode,
       navigatorObservers: [NavigatorObserverService()],
+      onGenerateRoute: (settings) => Routes.onGenerateRoutes(settings),
     );
   }
 }
