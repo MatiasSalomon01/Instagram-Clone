@@ -10,7 +10,7 @@ class CustomDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: white.withOpacity(.5),
+      color: white.withOpacity(.4),
       height: height,
       margin: EdgeInsets.symmetric(vertical: marginPadding),
     );
