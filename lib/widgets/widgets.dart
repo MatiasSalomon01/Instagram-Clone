@@ -1,3 +1,5 @@
+export 'package:instagram_clone/widgets/dots_widget.dart';
+export 'package:instagram_clone/widgets/image_post_widget.dart';
 export 'package:instagram_clone/widgets/svg_animated_icon_widget.dart';
 export 'package:instagram_clone/widgets/svg_string_widget.dart';
 export 'package:instagram_clone/widgets/profile_picture_widget.dart';
