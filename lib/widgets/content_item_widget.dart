@@ -61,13 +61,22 @@ class ContentItem extends StatelessWidget {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SvgString(icon: favoriteIcon),
+                        SvgAnimatedIcon(
+                          svgIcon: favoriteIcon,
+                          svgIconPressed: favoriteIconSelected,
+                          isPressed: false,
+                          svgColor: Color(0xffff3040),
+                        ),
                         SvgString(icon: commentIcon),
                         SvgString(icon: shareIcon),
                       ],
                     ),
                   ),
-                  const SvgString(icon: saveIcon),
+                  const SvgAnimatedIcon(
+                    svgIcon: saveIcon,
+                    svgIconPressed: saveIconSelected,
+                    isPressed: false,
+                  ),
                 ],
               ),
               const VerticalSpace(10),

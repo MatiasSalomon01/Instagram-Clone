@@ -1,3 +1,4 @@
+export 'package:instagram_clone/widgets/svg_animated_icon_widget.dart';
 export 'package:instagram_clone/widgets/svg_string_widget.dart';
 export 'package:instagram_clone/widgets/profile_picture_widget.dart';
 export 'package:instagram_clone/widgets/custom_divider_widget.dart';
