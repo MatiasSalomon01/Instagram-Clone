@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/constants/others.dart';
 import 'package:instagram_clone/providers/providers.dart';
-import 'package:instagram_clone/routes/routes.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -11,85 +10,63 @@ import '../constants/colors.dart';
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({
     super.key,
+    required this.goTo,
   });
+  final Function(int) goTo;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    print('CustomNavigationBar se dibuja');
+    final asd = Provider.of<NavigatorProvider>(context);
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        CustomDivider(),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _Item(
-                svg: homeIcon,
-                svgSelected: homeIconSelected,
-                routeName: Routes.home,
-                changeToSelected: true,
+        const CustomDivider(),
+        Theme(
+          data: ThemeData(
+            splashFactory: NoSplash.splashFactory,
+            highlightColor: transparent,
+          ),
+          child: BottomNavigationBar(
+            currentIndex: asd.pageIndex,
+            backgroundColor: transparent,
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            selectedFontSize: 0,
+            unselectedFontSize: 0,
+            onTap: goTo,
+            items: const [
+              BottomNavigationBarItem(
+                icon: SvgString(icon: homeIcon),
+                activeIcon: SvgString(icon: homeIconSelected),
+                label: '',
               ),
-              _Item(
-                svg: searchIcon,
-                svgSelected: searchIconSelected,
-                routeName: Routes.search,
-                changeToSelected: true,
+              BottomNavigationBarItem(
+                icon: SvgString(icon: searchIcon),
+                activeIcon: SvgString(icon: searchIconSelected),
+                label: '',
               ),
-              _Item(
-                widget: SvgString(icon: createIcon),
-                routeName: Routes.create,
+              BottomNavigationBarItem(
+                  icon: SvgString(icon: createIcon), label: ''),
+              BottomNavigationBarItem(
+                icon: SvgString(icon: reelsIcon),
+                activeIcon: SvgString(icon: reelsIconSelected),
+                label: '',
               ),
-              _Item(
-                svg: reelsIcon,
-                svgSelected: reelsIconSelected,
-                routeName: Routes.reels,
-                changeToSelected: true,
-              ),
-              _Item(
-                widget: CircleAvatar(
+              BottomNavigationBarItem(
+                icon: CircleAvatar(
                   radius: 13,
                   backgroundColor: white,
                   backgroundImage: NetworkImage(defaultProfilePicture),
                 ),
-                routeName: Routes.user,
+                label: '',
               ),
             ],
           ),
-        ),
+        )
       ],
-    );
-  }
-}
-
-class _Item extends StatelessWidget {
-  const _Item({
-    this.widget = const SizedBox(),
-    this.svg = '',
-    this.svgSelected = '',
-    required this.routeName,
-    this.changeToSelected = false,
-  });
-
-  final Widget widget;
-  final String svg;
-  final String svgSelected;
-  final String routeName;
-  final bool changeToSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, routeName),
-      child: Consumer<NavigatorProvider>(
-        builder: (context, value, child) {
-          return changeToSelected
-              ? SvgString(
-                  icon: value.routeName == routeName ? svgSelected : svg,
-                )
-              : widget;
-        },
-      ),
     );
   }
 }

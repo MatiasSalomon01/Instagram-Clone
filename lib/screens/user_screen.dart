@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/colors.dart';
 
-import '../widgets/widgets.dart';
-
 class UserScreen extends StatelessWidget {
   const UserScreen({super.key});
 
@@ -10,7 +8,7 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: backgroundColor,
-      bottomNavigationBar: CustomNavigationBar(),
+      // bottomNavigationBar: CustomNavigationBar(),
     );
   }
 }

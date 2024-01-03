@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/providers/providers.dart';
-import 'package:instagram_clone/routes/routes.dart';
-import 'package:instagram_clone/services/services.dart';
 import 'package:instagram_clone/theme/custom_theme.dart';
 import 'package:provider/provider.dart';
+
+import 'screens/screens.dart';
 
 void main() => runApp(const AppState());
 
@@ -29,10 +29,11 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
+      home: const MainScreen(),
       theme: CustomTheme.lightMode,
-      navigatorObservers: [NavigatorObserverService()],
-      onGenerateRoute: (settings) => Routes.onGenerateRoutes(settings),
+      // initialRoute: Routes.home,
+      // navigatorObservers: [NavigatorObserverService()],
+      // onGenerateRoute: (settings) => Routes.onGenerateRoutes(settings),
     );
   }
 }

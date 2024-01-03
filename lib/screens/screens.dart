@@ -1,3 +1,4 @@
+export 'package:instagram_clone/screens/main_screen.dart';
 export 'package:instagram_clone/screens/error_screen.dart';
 export 'package:instagram_clone/screens/create_screen.dart';
 export 'package:instagram_clone/screens/home_screen.dart';
