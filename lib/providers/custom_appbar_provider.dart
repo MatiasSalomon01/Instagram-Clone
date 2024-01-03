@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBarProvider extends ChangeNotifier {
-  late final ScrollController mainController;
+  // late final ScrollController mainController;
 
-  CustomAppBarProvider() {
-    mainController = ScrollController();
-    mainController.addListener(isAtEdge);
-  }
+  // CustomAppBarProvider() {
+  //   mainController = ScrollController();
+  //   mainController.addListener(isAtEdge);
+  // }
 
-  void isAtEdge() {
-    if (!mainController.position.atEdge &&
-        showDivider &&
-        mainController.offset > 0) {
-      showDivider = false;
-    }
+  // void isAtEdge() {
+  //   if (!mainController.position.atEdge &&
+  //       showDivider &&
+  //       mainController.offset > 0) {
+  //     showDivider = false;
+  //   }
 
-    if (mainController.position.outOfRange &&
-        mainController.offset < 0 &&
-        !showDivider) {
-      showDivider = true;
-    }
+  //   if (mainController.position.outOfRange &&
+  //       mainController.offset < 0 &&
+  //       !showDivider) {
+  //     showDivider = true;
+  //   }
 
-    if (mainController.position.atEdge &&
-        !showDivider &&
-        mainController.offset == 0) {
-      showDivider = true;
-    }
-  }
+  //   if (mainController.position.atEdge &&
+  //       !showDivider &&
+  //       mainController.offset == 0) {
+  //     showDivider = true;
+  //   }
+  // }
 
   bool _showDivider = true;
 
