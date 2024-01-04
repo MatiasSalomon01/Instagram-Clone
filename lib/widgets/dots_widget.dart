@@ -8,12 +8,12 @@ class Dots extends StatelessWidget {
   const Dots({super.key, required this.count});
 
   final int count;
-
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<ImageDotsProvider>();
     return Container(
       height: 20,
+      width: 75,
       alignment: Alignment.center,
       child: ListView.builder(
         shrinkWrap: true,

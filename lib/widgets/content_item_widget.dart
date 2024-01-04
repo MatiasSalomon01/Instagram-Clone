@@ -162,6 +162,7 @@ class _Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,9 +191,7 @@ class _Buttons extends StatelessWidget {
           ],
         ),
         if (hasMoreThenOneImage)
-          Dots(
-            count: model.images.length > 10 ? 10 : model.images.length,
-          ),
+          Dots(count: model.images.length > 10 ? 10 : model.images.length),
       ],
     );
   }
@@ -215,7 +214,7 @@ class _Post extends StatelessWidget {
       child: !hasMoreThenOneImage || model.images.isEmpty
           ? ImagePost(url: model.storyModel.profilePictureUrl)
           : PageView.builder(
-              itemCount: model.images.length,
+              itemCount: 10,
               itemBuilder: (context, index) => ImagePost(
                 url: model.images[index],
               ),
