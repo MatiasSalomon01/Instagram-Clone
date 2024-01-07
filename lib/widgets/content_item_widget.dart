@@ -7,6 +7,7 @@ import 'package:instagram_clone/widgets/widgets.dart';
 import 'package:mock_data/mock_data.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/helpers.dart';
 import '../mock/mock_data.dart';
 import '../providers/providers.dart';
 
@@ -132,9 +133,12 @@ class _Information extends StatelessWidget {
             ),
           ],
           const VerticalSpace(6),
-          Text(
-            'Ver los ${model.totalComments} comentarios',
-            style: const TextStyle(color: whiteOpaque),
+          GestureDetector(
+            onTap: () => ContentItemHelper.showCommentsModal(context),
+            child: Text(
+              'Ver los ${model.totalComments} comentarios',
+              style: const TextStyle(color: whiteOpaque),
+            ),
           ),
           const VerticalSpace(6),
           Text(
@@ -169,17 +173,20 @@ class _Buttons extends StatelessWidget {
           children: [
             SizedBox(
               width: size.width * .3,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgAnimatedIcon(
+                  const SvgAnimatedIcon(
                     svgIcon: favoriteIcon,
                     svgIconPressed: favoriteIconSelected,
                     isPressed: false,
                     svgColor: Color(0xffff3040),
                   ),
-                  SvgString(icon: commentIcon),
-                  SvgString(icon: shareIcon),
+                  SvgString(
+                    icon: commentIcon,
+                    onTap: () => ContentItemHelper.showCommentsModal(context),
+                  ),
+                  const SvgString(icon: shareIcon),
                 ],
               ),
             ),

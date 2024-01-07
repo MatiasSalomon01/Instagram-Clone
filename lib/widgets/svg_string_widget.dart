@@ -8,20 +8,25 @@ class SvgString extends StatelessWidget {
     required this.icon,
     this.height = 25,
     this.color = white,
+    this.onTap,
   });
 
   final String icon;
   final double height;
   final Color color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.string(
-      icon,
-      height: height,
-      colorFilter: ColorFilter.mode(
-        color,
-        BlendMode.srcIn,
+    return GestureDetector(
+      onTap: onTap,
+      child: SvgPicture.string(
+        icon,
+        height: height,
+        colorFilter: ColorFilter.mode(
+          color,
+          BlendMode.srcIn,
+        ),
       ),
     );
   }
