@@ -59,7 +59,7 @@ class CustomNavigationBar extends StatelessWidget {
                 icon: CircleAvatar(
                   radius: 13,
                   backgroundColor: white,
-                  backgroundImage: NetworkImage(defaultProfilePicture),
+                  backgroundImage: AssetImage(defaultProfilePicture),
                 ),
                 label: '',
               ),

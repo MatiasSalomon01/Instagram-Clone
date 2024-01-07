@@ -41,13 +41,17 @@ class ProfilePicture extends StatelessWidget {
               color: backgroundColor,
               shape: BoxShape.circle,
             ),
-            child: CircleAvatar(
-              radius: radius,
-              backgroundColor: white,
-              backgroundImage: NetworkImage(
-                model.profilePictureUrl ?? defaultProfilePicture,
-              ),
-            ),
+            child: model.profilePictureUrl == null
+                ? CircleAvatar(
+                    radius: radius,
+                    backgroundColor: white,
+                    backgroundImage: const AssetImage(defaultProfilePicture),
+                  )
+                : CircleAvatar(
+                    radius: radius,
+                    backgroundColor: white,
+                    backgroundImage: NetworkImage(model.profilePictureUrl!),
+                  ),
           ),
         ),
         if (model.isMe)
