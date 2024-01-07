@@ -12,10 +12,16 @@ class ImagePost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Image.network(
-      url ?? defaultProfilePicture,
-      fit: BoxFit.cover,
-      width: size.width,
-    );
+    return url == null
+        ? Image.asset(
+            defaultProfilePicture,
+            fit: BoxFit.cover,
+            width: size.width,
+          )
+        : Image.network(
+            url!,
+            fit: BoxFit.cover,
+            width: size.width,
+          );
   }
 }
