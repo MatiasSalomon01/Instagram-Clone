@@ -184,7 +184,10 @@ class _Buttons extends StatelessWidget {
                   ),
                   SvgString(
                     icon: commentIcon,
-                    onTap: () => ContentItemHelper.showCommentsModal(context),
+                    onTap: () => ContentItemHelper.showCommentsModal(
+                      context,
+                      isScrollControlled: true,
+                    ),
                   ),
                   const SvgString(icon: shareIcon),
                 ],

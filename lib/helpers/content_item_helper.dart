@@ -4,12 +4,11 @@ import '../constants/colors.dart';
 import '../widgets/widgets.dart';
 
 class ContentItemHelper {
-  static void showCommentsModal(BuildContext context) {
+  static void showCommentsModal(BuildContext context,
+      {bool isScrollControlled = false}) {
     showModalBottomSheet(
       context: context,
-      // constraints:
-      //     BoxConstraints(maxHeight: MediaQuery.of(context).size.height * .6),
-      isScrollControlled: true,
+      isScrollControlled: isScrollControlled,
       builder: (context) {
         return SafeArea(
           child: Container(
