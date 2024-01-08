@@ -10,11 +10,13 @@ class ProfilePicture extends StatelessWidget {
     required this.model,
     this.radius = 40,
     this.padding = 3,
+    this.marginColor = backgroundColor,
   });
 
   final StoryModel model;
   final double radius;
   final double padding;
+  final Color marginColor;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +39,8 @@ class ProfilePicture extends StatelessWidget {
               : null,
           child: Container(
             padding: EdgeInsets.all(padding),
-            decoration: const BoxDecoration(
-              color: backgroundColor,
+            decoration: BoxDecoration(
+              color: marginColor,
               shape: BoxShape.circle,
             ),
             child: model.profilePictureUrl == null

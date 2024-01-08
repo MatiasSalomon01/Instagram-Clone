@@ -10,6 +10,7 @@ class SvgAnimatedIcon extends StatefulWidget {
     required this.svgIconPressed,
     this.isPressed = false,
     this.svgColor = white,
+    this.svgColorSelected = white,
     this.height = 25,
     this.addCounter = false,
     this.counter,
@@ -19,6 +20,7 @@ class SvgAnimatedIcon extends StatefulWidget {
   final String svgIconPressed;
   final bool isPressed;
   final Color svgColor;
+  final Color svgColorSelected;
   final double height;
   final bool addCounter;
   final int? counter;
@@ -79,7 +81,7 @@ class _SvgAnimatedIconState extends State<SvgAnimatedIcon>
             onTap: animate,
             child: SvgString(
               icon: isPressed ? widget.svgIconPressed : widget.svgIcon,
-              color: isPressed ? widget.svgColor : white,
+              color: isPressed ? widget.svgColorSelected : widget.svgColor,
               height: widget.height,
             ),
           ),

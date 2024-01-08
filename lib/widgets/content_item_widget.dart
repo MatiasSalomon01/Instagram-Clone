@@ -180,7 +180,7 @@ class _Buttons extends StatelessWidget {
                     svgIcon: favoriteIcon,
                     svgIconPressed: favoriteIconSelected,
                     isPressed: false,
-                    svgColor: Color(0xffff3040),
+                    svgColorSelected: Color(0xffff3040),
                   ),
                   SvgString(
                     icon: commentIcon,
