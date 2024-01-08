@@ -19,7 +19,7 @@ class ContentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final bool hasMoreThenOneImage = model.images.length > 1;
+    final bool hasMoreThenOnePost = model.posts.length > 1;
 
     return ChangeNotifierProvider(
       create: (context) => ImageDotsProvider(),
@@ -27,7 +27,7 @@ class ContentItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _Header(model: model),
-          _Post(hasMoreThenOneImage: hasMoreThenOneImage, model: model),
+          _Post(hasMoreThenOnePost: hasMoreThenOnePost, model: model),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Column(
@@ -35,7 +35,7 @@ class ContentItem extends StatelessWidget {
                 const VerticalSpace(12),
                 _Buttons(
                   size: size,
-                  hasMoreThenOneImage: hasMoreThenOneImage,
+                  hasMoreThenOnePost: hasMoreThenOnePost,
                   model: model,
                 ),
                 const VerticalSpace(10),
@@ -155,12 +155,12 @@ class _Buttons extends StatelessWidget {
   const _Buttons({
     super.key,
     required this.size,
-    required this.hasMoreThenOneImage,
+    required this.hasMoreThenOnePost,
     required this.model,
   });
 
   final Size size;
-  final bool hasMoreThenOneImage;
+  final bool hasMoreThenOnePost;
   final ContentPostModel model;
 
   @override
@@ -200,8 +200,8 @@ class _Buttons extends StatelessWidget {
             ),
           ],
         ),
-        if (hasMoreThenOneImage)
-          Dots(count: model.images.length > 10 ? 10 : model.images.length),
+        if (hasMoreThenOnePost)
+          Dots(count: model.posts.length > 10 ? 10 : model.posts.length),
       ],
     );
   }
@@ -210,23 +210,27 @@ class _Buttons extends StatelessWidget {
 class _Post extends StatelessWidget {
   const _Post({
     super.key,
-    required this.hasMoreThenOneImage,
+    required this.hasMoreThenOnePost,
     required this.model,
   });
 
-  final bool hasMoreThenOneImage;
+  final bool hasMoreThenOnePost;
   final ContentPostModel model;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 450,
-      child: !hasMoreThenOneImage || model.images.isEmpty
-          ? ImagePost(url: model.storyModel.profilePictureUrl)
+      child: !hasMoreThenOnePost || model.posts.isEmpty
+          ? FilePost(
+              url: model.storyModel.profilePictureUrl,
+              isVideo: false,
+            )
           : PageView.builder(
               itemCount: 10,
-              itemBuilder: (context, index) => ImagePost(
-                url: model.images[index],
+              itemBuilder: (context, index) => FilePost(
+                url: model.posts[index].fileUrl,
+                isVideo: model.posts[index].isVideo(),
               ),
               onPageChanged: (value) =>
                   context.read<ImageDotsProvider>().imageIndex = value,

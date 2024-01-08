@@ -14,6 +14,7 @@ dependencies:
   google_fonts: 6.1.0
   mock_data: ^2.0.1
   provider: ^6.1.1
+  video_player: 2.6.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -24,3 +25,4 @@ flutter:
   uses-material-design: true
   assets:
     - 'assets/defaultProfilePicture.jpg'
+    - 'assets/video1.mp4'

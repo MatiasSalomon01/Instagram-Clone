@@ -16,25 +16,65 @@ final content = [
           'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600',
     ),
     createAt: mockDate(DateTime(2023, 5, 2)),
-    images: [
-      'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      'https://images.pexels.com/photos/19384491/pexels-photo-19384491/free-photo-of-a-woman-holding-a-camera.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      'https://images.pexels.com/photos/19384491/pexels-photo-19384491/free-photo-of-a-woman-holding-a-camera.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      'https://images.pexels.com/photos/19384491/pexels-photo-19384491/free-photo-of-a-woman-holding-a-camera.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    posts: [
+      Posts(fileUrl: 'assets/video1.mp4'),
+      Posts(
+          fileUrl:
+              'https://player.vimeo.com/external/535084574.sd.mp4?s=36a0fc9715aeff4f701f07a370eb48780363ff22&profile_id=165&oauth2_token_id=57447761'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/19384491/pexels-photo-19384491/free-photo-of-a-woman-holding-a-camera.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/19384491/pexels-photo-19384491/free-photo-of-a-woman-holding-a-camera.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/19384491/pexels-photo-19384491/free-photo-of-a-woman-holding-a-camera.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+      Posts(
+          fileUrl:
+              'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
     ],
   ),
   ContentPostModel(
@@ -55,7 +95,7 @@ final content = [
     ),
     caption: 'Este es el caption del post',
     createAt: mockDate(DateTime(2023, 7, 15)),
-    likedBy: List.generate(3, (index) => StoryModel(username: mockName())),
+    likedBy: List.generate(1587, (index) => StoryModel(username: mockName())),
   ),
   ContentPostModel(
     storyModel: StoryModel(
@@ -74,9 +114,13 @@ final content = [
       caption: 'Este es el caption del post',
       createAt: mockDate(DateTime(2023, 12, 28)),
       likedBy: List.generate(1, (index) => StoryModel(username: mockName())),
-      images: [
-        'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600',
-        'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600',
+      posts: [
+        Posts(
+            fileUrl:
+                'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
+        Posts(
+            fileUrl:
+                'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
       ]),
   ContentPostModel(
     storyModel: StoryModel(
