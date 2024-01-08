@@ -115,9 +115,11 @@ class _CommentState extends State<Comment> {
                         GestureDetector(
                           onTap: () =>
                               setState(() => showAnswers = !showAnswers),
-                          child: const Text(
-                            'Ver 7 respuestas',
-                            style: TextStyle(
+                          child: Text(
+                            showAnswers
+                                ? 'Ocultar respuestas'
+                                : 'Ver 7 respuestas',
+                            style: const TextStyle(
                               color: greyText,
                               fontWeight: FontWeight.w500,
                               fontSize: 12,
