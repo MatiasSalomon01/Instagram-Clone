@@ -48,6 +48,7 @@ class _CommentState extends State<Comment> {
                           style: TextStyle(
                             color: white,
                             fontWeight: FontWeight.bold,
+                            fontSize: 12,
                           ),
                         ),
                         HorizontalSpace(10),
@@ -56,6 +57,7 @@ class _CommentState extends State<Comment> {
                           style: TextStyle(
                             color: greyText,
                             fontWeight: FontWeight.bold,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -64,7 +66,10 @@ class _CommentState extends State<Comment> {
                       padding: EdgeInsets.only(right: 25),
                       child: Text(
                         'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-                        style: TextStyle(color: white),
+                        style: TextStyle(
+                          color: white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                     const VerticalSpace(5),
@@ -75,6 +80,7 @@ class _CommentState extends State<Comment> {
                           style: TextStyle(
                             color: greyText,
                             fontWeight: FontWeight.w500,
+                            fontSize: 12,
                           ),
                         ),
                         HorizontalSpace(20),
@@ -83,6 +89,7 @@ class _CommentState extends State<Comment> {
                           style: TextStyle(
                             color: greyText,
                             fontWeight: FontWeight.w500,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -113,6 +120,7 @@ class _CommentState extends State<Comment> {
                             style: TextStyle(
                               color: greyText,
                               fontWeight: FontWeight.w500,
+                              fontSize: 12,
                             ),
                           ),
                         ),

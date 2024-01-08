@@ -24,6 +24,7 @@ class AnswerComment extends StatelessWidget {
             marginColor: grey,
           ),
         ),
+        const HorizontalSpace(5),
         const Expanded(
           flex: 5,
           child: Column(
@@ -36,6 +37,7 @@ class AnswerComment extends StatelessWidget {
                     style: TextStyle(
                       color: white,
                       fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
                   ),
                   HorizontalSpace(10),
@@ -44,13 +46,17 @@ class AnswerComment extends StatelessWidget {
                     style: TextStyle(
                       color: greyText,
                       fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
                   ),
                 ],
               ),
               Text(
                 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
-                style: TextStyle(color: white),
+                style: TextStyle(
+                  color: white,
+                  fontSize: 12,
+                ),
               ),
               VerticalSpace(5),
               Row(
@@ -60,6 +66,7 @@ class AnswerComment extends StatelessWidget {
                     style: TextStyle(
                       color: greyText,
                       fontWeight: FontWeight.w500,
+                      fontSize: 12,
                     ),
                   ),
                   HorizontalSpace(20),
@@ -68,6 +75,7 @@ class AnswerComment extends StatelessWidget {
                     style: TextStyle(
                       color: greyText,
                       fontWeight: FontWeight.w500,
+                      fontSize: 12,
                     ),
                   ),
                 ],
@@ -75,6 +83,7 @@ class AnswerComment extends StatelessWidget {
             ],
           ),
         ),
+        const HorizontalSpace(8),
         const SvgAnimatedIcon(
           svgIcon: favoriteIcon,
           svgIconPressed: favoriteIconSelected,

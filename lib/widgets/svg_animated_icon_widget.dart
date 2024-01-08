@@ -87,12 +87,13 @@ class _SvgAnimatedIconState extends State<SvgAnimatedIcon>
           ),
         ),
         if (widget.addCounter && counter != null) ...[
-          VerticalSpace(4),
+          const VerticalSpace(4),
           Text(
             '$counter',
-            style: TextStyle(
+            style: const TextStyle(
               color: greyText,
               fontWeight: FontWeight.bold,
+              fontSize: 12,
             ),
           ),
         ]
