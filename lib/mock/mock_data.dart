@@ -17,10 +17,10 @@ final content = [
     ),
     createAt: mockDate(DateTime(2023, 5, 2)),
     posts: [
-      Posts(fileUrl: 'assets/video1.mp4'),
       Posts(
           fileUrl:
-              'https://player.vimeo.com/external/535084574.sd.mp4?s=36a0fc9715aeff4f701f07a370eb48780363ff22&profile_id=165&oauth2_token_id=57447761'),
+              'https://media4.giphy.com/media/ZFFBCvoqlQ7aikyNRh/giphy.mp4?cid=313c7dd3l9j5jbbjeojdnzztagpd3ozlj79qagh2b96gjmiw&ep=v1_gifs_random&rid=giphy.mp4&ct=g"'),
+      Posts(fileUrl: 'assets/video1.mp4'),
       Posts(
           fileUrl:
               'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
@@ -35,7 +35,7 @@ final content = [
               'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
       Posts(
           fileUrl:
-              'https://images.pexels.com/photos/19384491/pexels-photo-19384491/free-photo-of-a-woman-holding-a-camera.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              "https://media3.giphy.com/media/QjJ3NmjWt6tYc6NV4K/giphy.mp4?cid=313c7dd3so97gsp0ppy6jq6moyiptr9k5t6ye0li9ugbt5hu&ep=v1_gifs_random&rid=giphy.mp4&ct=g"),
       Posts(
           fileUrl:
               'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
@@ -47,7 +47,7 @@ final content = [
               'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600'),
       Posts(
           fileUrl:
-              'https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=600'),
+              "https://media0.giphy.com/media/HXBRvnL2d6xGyNPj5H/giphy.mp4?cid=313c7dd3zzo8h654747vmzbtk2lwz3gvwvx2hs0uw0t50o9d&ep=v1_gifs_random&rid=giphy.mp4&ct=g"),
       Posts(
           fileUrl:
               'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
@@ -120,7 +120,7 @@ final content = [
                 'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
         Posts(
             fileUrl:
-                'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
+                "https://media0.giphy.com/media/VGBPm9VO4w3XCOtElu/giphy.mp4?cid=313c7dd334llhnpsda34po2s5sjo3koiafc8s5go6i9nhkj1&ep=v1_gifs_random&rid=giphy.mp4&ct=g"),
       ]),
   ContentPostModel(
     storyModel: StoryModel(

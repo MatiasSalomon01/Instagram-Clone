@@ -25,6 +25,7 @@ class Posts {
 
   bool isVideo() {
     return fileUrl.endsWith('.mp4') ||
-        fileUrl.startsWith('https://player.vimeo.com');
+        fileUrl.startsWith('https://firebasestorage.googleapis') ||
+        fileUrl.startsWith('https://media');
   }
 }

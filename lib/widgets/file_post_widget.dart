@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/colors.dart';
 import 'package:instagram_clone/constants/others.dart';
@@ -44,7 +46,6 @@ class Video extends StatefulWidget {
 
 class _VideoState extends State<Video> {
   late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {
@@ -54,8 +55,12 @@ class _VideoState extends State<Video> {
     } else {
       _controller = VideoPlayerController.network(widget.url!);
     }
-    _initializeVideoPlayerFuture = _controller.initialize();
+
     _controller.setLooping(true);
+    _controller.initialize().then((value) {
+      _controller.play();
+      setState(() {});
+    });
   }
 
   @override
@@ -66,31 +71,13 @@ class _VideoState extends State<Video> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initializeVideoPlayerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          _controller.play();
-          return AspectRatio(
+    return _controller.value.isInitialized
+        ? AspectRatio(
             aspectRatio: _controller.value.aspectRatio,
             child: VideoPlayer(_controller),
+          )
+        : Center(
+            child: CircularProgressIndicator(color: greyText, strokeWidth: 2),
           );
-        } else if (snapshot.hasError) {
-          return const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.error_outline, color: greyText),
-              Text(
-                'Ha ocurrido un error :(',
-                style: TextStyle(color: white),
-              )
-            ],
-          );
-        } else {
-          return const Center(
-              child: CircularProgressIndicator(color: greyText));
-        }
-      },
-    );
   }
 }
