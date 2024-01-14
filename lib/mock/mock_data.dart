@@ -19,7 +19,7 @@ final content = [
     posts: [
       Posts(
           fileUrl:
-              'https://media4.giphy.com/media/ZFFBCvoqlQ7aikyNRh/giphy.mp4?cid=313c7dd3l9j5jbbjeojdnzztagpd3ozlj79qagh2b96gjmiw&ep=v1_gifs_random&rid=giphy.mp4&ct=g"'),
+              'https://player.vimeo.com/external/459389137.hd.mp4?s=964e360f6996936b708905b2fcf9bdd66c26de0d&profile_id=174&oauth2_token_id=57447761'),
       Posts(fileUrl: 'assets/video1.mp4'),
       Posts(
           fileUrl:
@@ -35,7 +35,7 @@ final content = [
               'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
       Posts(
           fileUrl:
-              "https://media3.giphy.com/media/QjJ3NmjWt6tYc6NV4K/giphy.mp4?cid=313c7dd3so97gsp0ppy6jq6moyiptr9k5t6ye0li9ugbt5hu&ep=v1_gifs_random&rid=giphy.mp4&ct=g"),
+              "https://player.vimeo.com/external/517090081.hd.mp4?s=41698e1dec8310a33d49620e58eacab0589913da&profile_id=174&oauth2_token_id=57447761"),
       Posts(
           fileUrl:
               'https://images.pexels.com/photos/19326478/pexels-photo-19326478/free-photo-of-columns-near-vintage-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
@@ -47,7 +47,7 @@ final content = [
               'https://images.pexels.com/photos/1707821/pexels-photo-1707821.jpeg?auto=compress&cs=tinysrgb&w=600'),
       Posts(
           fileUrl:
-              "https://media0.giphy.com/media/HXBRvnL2d6xGyNPj5H/giphy.mp4?cid=313c7dd3zzo8h654747vmzbtk2lwz3gvwvx2hs0uw0t50o9d&ep=v1_gifs_random&rid=giphy.mp4&ct=g"),
+              "https://player.vimeo.com/external/534342299.hd.mp4?s=cf23e96b1691995d1b710d46f7cdd8387013e941&profile_id=174&oauth2_token_id=57447761"),
       Posts(
           fileUrl:
               'https://images.pexels.com/photos/9661324/pexels-photo-9661324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
@@ -117,10 +117,10 @@ final content = [
       posts: [
         Posts(
             fileUrl:
-                'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
+                'https://player.vimeo.com/external/289258217.hd.mp4?s=5cf87d7670d96bbd2c110f4dc97fd5116f4468ad&profile_id=175&oauth2_token_id=57447761'),
         Posts(
             fileUrl:
-                "https://media0.giphy.com/media/VGBPm9VO4w3XCOtElu/giphy.mp4?cid=313c7dd334llhnpsda34po2s5sjo3koiafc8s5go6i9nhkj1&ep=v1_gifs_random&rid=giphy.mp4&ct=g"),
+                'https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600'),
       ]),
   ContentPostModel(
     storyModel: StoryModel(
