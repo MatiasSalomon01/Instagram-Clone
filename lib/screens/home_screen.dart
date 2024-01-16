@@ -52,9 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   isAtFinalEdge() {
-    if (mainController.position.atEdge &&
-        (mainController.offset > 0 || mainController.position.outOfRange)) {
-      print('TRAE DE DATOS DE NUEVO');
+    if (mainController.position.atEdge && mainController.offset > 0) {
       context.read<ContentProvider>().getContent();
     }
   }
@@ -63,29 +61,40 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     super.build(context);
     print('HomeScreen se dibuja');
+
+    final contentProvider = context.read<ContentProvider>();
     return Stack(
       children: [
-        ListView(
-          shrinkWrap: false,
-          controller: mainController,
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          children: const [
-            Stories(),
-            CustomDivider(),
-            Content(),
-          ],
+        RefreshIndicator(
+          onRefresh: () async => await contentProvider.refreshContent(),
+          strokeWidth: 2,
+          color: white,
+          backgroundColor: backgroundColor,
+          child: ListView(
+            shrinkWrap: false,
+            controller: mainController,
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            children: const [
+              Stories(),
+              CustomDivider(),
+              Content(),
+            ],
+          ),
         ),
-        Consumer<ContentProvider>(
-          builder: (context, contentProvider, child) =>
-              contentProvider.isLoading
-                  ? Container(
-                      color: backgroundColor.withOpacity(.5),
-                      child: const Loader(),
-                    )
-                  : const SizedBox(),
-        ),
+        _loader(),
       ],
+    );
+  }
+
+  Consumer<ContentProvider> _loader() {
+    return Consumer<ContentProvider>(
+      builder: (context, contentProvider, child) =>
+          contentProvider.isLoadingContent
+              ? Container(
+                  color: backgroundColor.withOpacity(.5),
+                  child: const Loader(),
+                )
+              : const SizedBox(),
     );
   }
 
