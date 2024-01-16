@@ -8,7 +8,6 @@ import 'package:mock_data/mock_data.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/helpers.dart';
-import '../mock/mock_data.dart';
 import '../providers/providers.dart';
 
 class ContentItem extends StatelessWidget {
@@ -69,7 +68,7 @@ class _Information extends StatelessWidget {
             children: [
               if (model.likedBy.isNotEmpty) ...[
                 ProfilePicture(
-                  model: stories[mockInteger(1, stories.length - 1)],
+                  model: StoryModel(username: mockName()),
                   radius: 10,
                   padding: 0,
                 ),
@@ -84,7 +83,8 @@ class _Information extends StatelessWidget {
                       children: [
                         TextSpan(
                           text:
-                              '${content[mockInteger(0, content.length - 1)].storyModel.username} ',
+                              // '${content[mockInteger(0, content.length - 1)].storyModel.username} ',
+                              mockName(),
                           style: const TextStyle(
                             color: white,
                             fontWeight: FontWeight.bold,

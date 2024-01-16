@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/constants/colors.dart';
 import 'package:instagram_clone/constants/others.dart';
+import 'package:instagram_clone/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
 
 class FilePost extends StatelessWidget {
@@ -76,8 +76,6 @@ class _VideoState extends State<Video> {
             aspectRatio: _controller.value.aspectRatio,
             child: VideoPlayer(_controller),
           )
-        : Center(
-            child: CircularProgressIndicator(color: greyText, strokeWidth: 2),
-          );
+        : Loader();
   }
 }

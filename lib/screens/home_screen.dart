@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/constants/colors.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/providers.dart';
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen>
     customAppBarProvider = context.read<CustomAppBarProvider>();
     mainController = ScrollController();
     mainController.addListener(isAtEdge);
+    mainController.addListener(isAtFinalEdge);
   }
 
   @override
@@ -49,19 +51,40 @@ class _HomeScreenState extends State<HomeScreen>
     }
   }
 
+  isAtFinalEdge() {
+    if (mainController.position.atEdge &&
+        (mainController.offset > 0 || mainController.position.outOfRange)) {
+      print('TRAE DE DATOS DE NUEVO');
+      context.read<ContentProvider>().getContent();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     print('HomeScreen se dibuja');
-    return ListView(
-      shrinkWrap: false,
-      controller: mainController,
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      children: const [
-        Stories(),
-        CustomDivider(),
-        Content(),
+    return Stack(
+      children: [
+        ListView(
+          shrinkWrap: false,
+          controller: mainController,
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          children: const [
+            Stories(),
+            CustomDivider(),
+            Content(),
+          ],
+        ),
+        Consumer<ContentProvider>(
+          builder: (context, contentProvider, child) =>
+              contentProvider.isLoading
+                  ? Container(
+                      color: backgroundColor.withOpacity(.5),
+                      child: const Loader(),
+                    )
+                  : const SizedBox(),
+        ),
       ],
     );
   }

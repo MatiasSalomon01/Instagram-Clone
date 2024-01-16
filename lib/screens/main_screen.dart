@@ -39,6 +39,7 @@ class _MainScreenState extends State<MainScreen> {
   void goTo(int index) {
     pageController.jumpToPage(index);
     context.read<NavigatorProvider>().pageIndex = index;
+    context.read<ContentProvider>().getContent();
   }
 
   @override

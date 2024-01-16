@@ -1,6 +1,7 @@
 import 'package:instagram_clone/models/models.dart';
 
 class ContentPostModel {
+  final int? id;
   final StoryModel storyModel;
   final List<StoryModel> likedBy;
   final List<Posts> posts;
@@ -9,6 +10,7 @@ class ContentPostModel {
   final DateTime createAt;
 
   ContentPostModel({
+    this.id,
     required this.storyModel,
     this.likedBy = const [],
     this.posts = const [],
@@ -16,6 +18,25 @@ class ContentPostModel {
     this.totalComments = 0,
     required this.createAt,
   });
+
+  factory ContentPostModel.fromJson(Map<String, dynamic> map) {
+    return ContentPostModel(
+      id: map['id'],
+      caption: map['caption'],
+      totalComments: map['totalComments'],
+      createAt: DateTime.parse(map['createAt']),
+      storyModel: StoryModel(
+        id: map['Stories']['id'],
+        username: map['Stories']['username'],
+        profilePictureUrl: map['Stories']['profilePictureUrl'],
+      ),
+    );
+  }
+
+  @override
+  String toString() {
+    return '$id, $caption, $totalComments, $createAt, ${storyModel.username}, ${storyModel.profilePictureUrl}';
+  }
 }
 
 class Posts {

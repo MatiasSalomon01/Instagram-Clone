@@ -1,4 +1,5 @@
 class StoryModel {
+  final int? id;
   final String username;
   final bool isMe;
   final bool hasStories;
@@ -6,6 +7,7 @@ class StoryModel {
   final String? profilePictureUrl;
 
   StoryModel({
+    this.id,
     required this.username,
     this.isMe = false,
     this.hasStories = false,

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/constants/others.dart';
 import 'package:instagram_clone/providers/providers.dart';
 import 'package:instagram_clone/theme/custom_theme.dart';
 import 'package:provider/provider.dart';
-
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'screens/screens.dart';
 
-void main() => runApp(const AppState());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(url: supabaseUrl, anonKey: anonKey);
+  runApp(const AppState());
+}
 
 class AppState extends StatelessWidget {
   const AppState({super.key});
@@ -16,7 +21,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => CustomAppBarProvider()),
         ChangeNotifierProvider(create: (context) => NavigatorProvider()),
-        // ChangeNotifierProvider(create: (context) => ContentProvider()),
+        ChangeNotifierProvider(create: (context) => ContentProvider()),
       ],
       child: const MainApp(),
     );
@@ -32,9 +37,6 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const MainScreen(),
       theme: CustomTheme.lightMode,
-      // initialRoute: Routes.home,
-      // navigatorObservers: [NavigatorObserverService()],
-      // onGenerateRoute: (settings) => Routes.onGenerateRoutes(settings),
     );
   }
 }

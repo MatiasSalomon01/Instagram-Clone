@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/providers/content_provider.dart';
+import 'package:provider/provider.dart';
 
-import '../mock/mock_data.dart';
 import 'widgets.dart';
 
 class Stories extends StatelessWidget {
@@ -9,6 +10,7 @@ class Stories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
+    final contentProvider = context.read<ContentProvider>();
     return SizedBox(
       height: 124,
       child: NotificationListener<OverscrollIndicatorNotification>(
@@ -17,11 +19,12 @@ class Stories extends StatelessWidget {
           return false;
         },
         child: ListView.separated(
-          itemCount: stories.length,
+          itemCount: contentProvider.stories.length,
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          itemBuilder: (context, index) => Story(model: stories[index]),
+          itemBuilder: (context, index) =>
+              Story(model: contentProvider.stories[index]),
           separatorBuilder: (context, index) => const HorizontalSpace(15),
         ),
       ),

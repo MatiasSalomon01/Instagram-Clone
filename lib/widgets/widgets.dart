@@ -1,3 +1,4 @@
+export 'package:instagram_clone/widgets/loader_widget.dart';
 export 'package:instagram_clone/widgets/answer_comment_widget.dart';
 export 'package:instagram_clone/widgets/comment_widget.dart';
 export 'package:instagram_clone/widgets/dots_widget.dart';
