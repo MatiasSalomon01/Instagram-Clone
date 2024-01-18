@@ -46,12 +46,12 @@ class ProfilePicture extends StatelessWidget {
             child: model.profilePictureUrl == null
                 ? CircleAvatar(
                     radius: radius,
-                    backgroundColor: white,
+                    backgroundColor: grey,
                     backgroundImage: const AssetImage(defaultProfilePicture),
                   )
                 : CircleAvatar(
                     radius: radius,
-                    backgroundColor: white,
+                    backgroundColor: grey,
                     backgroundImage: NetworkImage(model.profilePictureUrl!),
                   ),
           ),
