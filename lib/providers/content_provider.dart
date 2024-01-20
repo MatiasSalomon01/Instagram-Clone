@@ -16,10 +16,10 @@ class ContentProvider extends ChangeNotifier {
   ContentProvider();
 
   Future init() async {
-    await Future.wait([getContent(), getStories()] as List<Future>);
+    await Future.wait([getContent(), getStories()]);
   }
 
-  getContent() async {
+  Future<void> getContent() async {
     startLoaderContent();
 
     var content = await supabase
@@ -28,18 +28,17 @@ class ContentProvider extends ChangeNotifier {
             'id, caption, createAt, totalComments, Stories!ContentPosts_storyid_fkey(id, username, profilePictureUrl)')
         .order('createAt', ascending: false)
         .range(_takeContent, _takeContent + _interval)
-        .withConverter(
-            (data) => data.map((e) => ContentPostModel.fromJson(e)).toList());
+        .withConverter((data) => data.map(ContentPostModel.fromJson).toList());
 
-    var ids = content.map((e) => e.id!).toList();
+    // var ids = content.map((e) => e.id!).toList();
 
-    var prueba = await supabase
-        .from('ContentPostsUrls')
-        .select('id, url')
-        .inFilter('contentId', ids)
-        .range(_takeContent, _takeContent + _interval);
+    // var prueba = await supabase
+    //     .from('ContentPostsUrls')
+    //     .select('id, url')
+    //     .inFilter('contentId', ids)
+    //     .range(_takeContent, _takeContent + _interval);
 
-    print(prueba);
+    // print(prueba);
 
     this.content.addAll(content);
     _takeContent += _interval;
@@ -52,15 +51,14 @@ class ContentProvider extends ChangeNotifier {
     await getContent();
   }
 
-  getStories() async {
+  Future<void> getStories() async {
     startLoaderStories();
 
     var stories = await supabase
         .from('Stories')
         .select('id, username, isMe, hasStories, isVerified, profilePictureUrl')
         .range(_takeStories, _takeStories + _interval)
-        .withConverter(
-            (data) => data.map((e) => StoryModel.fromJson(e)).toList());
+        .withConverter((data) => data.map(StoryModel.fromJson).toList());
 
     this.stories.addAll(stories);
     _takeStories += _interval;
