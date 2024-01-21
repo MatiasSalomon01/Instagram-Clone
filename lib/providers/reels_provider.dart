@@ -29,6 +29,9 @@ class ReelsProvider extends ChangeNotifier {
     bool finished = await getPexelsVideos(count: count);
     if (!finished) return;
 
+    // videosFromApi[0] =
+    //     'https://player.vimeo.com/external/479728625.sd.mp4?s=f4f886d3d45a0312d8d47419647788178535a2c6&profile_id=165&oauth2_token_id=57447761';
+
     await loadInitialVideos();
   }
 
@@ -116,6 +119,8 @@ class ReelsProvider extends ChangeNotifier {
   };
 
   Future<bool> getPexelsVideos({int count = 0}) async {
+    print('PETICION A PEXELS');
+
     final url = Uri.https(
       _authority,
       '/videos/search',

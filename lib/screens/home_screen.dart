@@ -60,9 +60,8 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    print('HomeScreen se dibuja');
-
     final contentProvider = context.read<ContentProvider>();
+
     return Stack(
       children: [
         RefreshIndicator(

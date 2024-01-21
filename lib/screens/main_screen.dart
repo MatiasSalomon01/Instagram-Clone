@@ -44,9 +44,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var navigationProvider = context.watch<NavigatorProvider>();
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: const CustomAppBar(),
+      appBar: navigationProvider.pageIndex != 3 ? const CustomAppBar() : null,
       body: PageView.builder(
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),

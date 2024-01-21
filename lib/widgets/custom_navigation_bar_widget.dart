@@ -16,8 +16,8 @@ class CustomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('CustomNavigationBar se dibuja');
-    final asd = Provider.of<NavigatorProvider>(context);
+    final provider = Provider.of<NavigatorProvider>(context);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -28,7 +28,7 @@ class CustomNavigationBar extends StatelessWidget {
             highlightColor: transparent,
           ),
           child: BottomNavigationBar(
-            currentIndex: asd.pageIndex,
+            currentIndex: provider.pageIndex,
             backgroundColor: transparent,
             elevation: 0,
             type: BottomNavigationBarType.fixed,
