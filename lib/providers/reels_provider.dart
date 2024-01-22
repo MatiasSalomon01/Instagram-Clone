@@ -38,7 +38,7 @@ class ReelsProvider extends ChangeNotifier {
     await loadInitialVideos();
   }
 
-  loadInitialVideos() async {
+  Future<void> loadInitialVideos() async {
     //Inicializar primer video
     await initializeVideo(0);
 
@@ -142,6 +142,7 @@ class ReelsProvider extends ChangeNotifier {
     var decodedBody = json.decode(response.body) as Map<String, dynamic>;
     var pexelsReponse = PexelsResponse.fromJson(decodedBody);
 
+    final random = Random();
     for (var pexel in pexelsReponse.videos) {
       var videoFile = pexel.videoFiles.firstWhere(
         (e) => e.height <= 1080 && e.width <= 1920,
@@ -162,9 +163,9 @@ class ReelsProvider extends ChangeNotifier {
           profilePictureUrl: pexel.image,
         ),
         videoUrl: videoFile.link,
-        totalComments: Random().nextInt(10000),
-        totalLikes: Random().nextInt(258),
-        totalShares: Random().nextInt(258),
+        totalComments: random.nextInt(10000),
+        totalLikes: random.nextInt(258),
+        totalShares: random.nextInt(258),
         extraInfo: user.url,
         friendName: mockName(),
       );
