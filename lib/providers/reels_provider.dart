@@ -5,6 +5,7 @@ import 'package:instagram_clone/models/models.dart';
 import 'package:mock_data/mock_data.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
+import 'package:word_generator/word_generator.dart';
 
 class ReelsProvider extends ChangeNotifier {
   Map<int, VideoPlayerController> mapVideos = {};
@@ -143,10 +144,14 @@ class ReelsProvider extends ChangeNotifier {
     var pexelsReponse = PexelsResponse.fromJson(decodedBody);
 
     final random = Random();
+    final wordGenerator = WordGenerator();
     for (var pexel in pexelsReponse.videos) {
       var videoFile = pexel.videoFiles.firstWhere(
-        (e) => e.height <= 1080 && e.width <= 1920,
-        orElse: () => VideoFile.empty(),
+        (v) => v.height == 1080 && v.width == 1920,
+        orElse: () => pexel.videoFiles.firstWhere(
+          (vi) => vi.height <= 1080 && vi.width <= 1920,
+          orElse: () => VideoFile.empty(),
+        ),
       );
 
       if (videoFile.id == 0) continue;
@@ -154,7 +159,7 @@ class ReelsProvider extends ChangeNotifier {
       var user = pexel.user;
       videosFromApi[count] = videoFile.link;
       reelsContent[count] = ReelsModel(
-        caption: 'Este es el caption carita fachero facherita',
+        caption: wordGenerator.randomSentence(random.nextInt(50) + 2),
         storyModel: StoryModel(
           id: user.id,
           username: user.name,
@@ -171,6 +176,7 @@ class ReelsProvider extends ChangeNotifier {
       );
       count++;
     }
+
     notifyListeners();
     return true;
   }
