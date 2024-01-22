@@ -22,15 +22,15 @@ class ReelsProvider extends ChangeNotifier {
   }
 
   Future<void> getVideosFromApi() async {
-    int count = mapVideos.isEmpty ? 0 : videosFromApi.length;
+    // int count = mapVideos.isEmpty ? 0 : videosFromApi.length;
 
-    _page += 1;
+    // _page += 1;
 
-    bool finished = await getPexelsVideos(count: count);
-    if (!finished) return;
+    // bool finished = await getPexelsVideos(count: count);
+    // if (!finished) return;
 
-    // videosFromApi[0] =
-    //     'https://player.vimeo.com/external/479728625.sd.mp4?s=f4f886d3d45a0312d8d47419647788178535a2c6&profile_id=165&oauth2_token_id=57447761';
+    videosFromApi[0] =
+        'https://player.vimeo.com/external/479728625.sd.mp4?s=f4f886d3d45a0312d8d47419647788178535a2c6&profile_id=165&oauth2_token_id=57447761';
 
     await loadInitialVideos();
   }

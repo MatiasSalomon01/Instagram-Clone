@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/colors.dart';
 import 'package:instagram_clone/models/models.dart';
@@ -23,7 +25,7 @@ class ReelsScreen extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 22),
                 child: Consumer<ReelsProvider>(
                   builder: (context, state, child) => PageView.builder(
                     scrollDirection: Axis.vertical,
@@ -48,7 +50,7 @@ class ReelsScreen extends StatelessWidget {
                               margin: const EdgeInsets.only(right: 10),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   const Column(
                                     children: [
@@ -123,7 +125,7 @@ class ReelsScreen extends StatelessWidget {
                                         fit: BoxFit.cover,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -133,9 +135,9 @@ class ReelsScreen extends StatelessWidget {
                             left: 0,
                             child: Container(
                               // color: lightBlue,
-                              height: 130,
+                              height: 160,
                               width: MediaQuery.of(context).size.width * .8,
-                              padding: EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -189,7 +191,17 @@ class ReelsScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  VerticalSpace(5),
+                                  VerticalSpace(15),
+                                  Text(
+                                    'Este es el caption',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  VerticalSpace(10),
                                   Row(
                                     children: [
                                       ProfilePicture(
@@ -198,43 +210,65 @@ class ReelsScreen extends StatelessWidget {
                                         padding: 0,
                                       ),
                                       const HorizontalSpace(10),
-                                      Text.rich(
-                                        TextSpan(
-                                          text: 'Le gusta a ',
-                                          style: const TextStyle(color: white),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  // '${content[mockInteger(0, content.length - 1)].storyModel.username} ',
-                                                  mockName(),
-                                              style: const TextStyle(
-                                                color: white,
-                                                fontWeight: FontWeight.bold,
+                                      Expanded(
+                                        child: Text.rich(
+                                          TextSpan(
+                                            text: 'Le gusta a ',
+                                            style: const TextStyle(
+                                                color: Colors.white70),
+                                            children: [
+                                              TextSpan(
+                                                text:
+                                                    // '${content[mockInteger(0, content.length - 1)].storyModel.username} ',
+                                                    mockName(),
+                                                style: const TextStyle(
+                                                  color: Colors.white70,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ),
-                                            const TextSpan(
-                                                text: 'y ',
-                                                style: TextStyle(color: white)),
-                                            TextSpan(
-                                              text: '10 personas más',
-                                              style: const TextStyle(
-                                                color: white,
-                                                fontWeight: FontWeight.bold,
+                                              const TextSpan(
+                                                  text: ' y ',
+                                                  style: TextStyle(
+                                                      color: Colors.white70)),
+                                              TextSpan(
+                                                text: '384 personas más',
+                                                style: const TextStyle(
+                                                  color: Colors.white70,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
+                                          style: TextStyle(height: 1.2),
+                                          maxLines: 2,
                                         ),
                                       ),
                                     ],
                                   ),
                                   VerticalSpace(10),
-                                  Text(
-                                    'Esta es el caption de la publicacionpublicacionpublicacionpublicacionpublicacionpublicacionpublicacionpublicacionpublicacionpublicacionpublicacionpublicacionpublicacion',
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: white,
-                                      fontWeight: FontWeight.w500,
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 3, horizontal: 8),
+                                    decoration: BoxDecoration(
+                                        color: grey.withOpacity(.5),
+                                        border:
+                                            Border.all(color: Colors.white10),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          Icons.music_note_rounded,
+                                          color: white,
+                                          size: 15,
+                                        ),
+                                        HorizontalSpace(5),
+                                        Text(
+                                          'nombre de la cancion o audio',
+                                          style: TextStyle(color: white),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ],
@@ -257,6 +291,7 @@ class ReelsScreen extends StatelessWidget {
               ),
               const Positioned(
                 right: 21,
+                top: 10,
                 child: Icon(
                   Icons.camera_alt_outlined,
                   color: white,
