@@ -1,12 +1,15 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/models.dart';
+import 'package:mock_data/mock_data.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 
 class ReelsProvider extends ChangeNotifier {
   Map<int, VideoPlayerController> mapVideos = {};
   Map<int, String> videosFromApi = {};
+  Map<int, ReelsModel> reelsContent = {};
   int _currentIndex = 0;
   int _page = 0;
 
@@ -22,15 +25,15 @@ class ReelsProvider extends ChangeNotifier {
   }
 
   Future<void> getVideosFromApi() async {
-    // int count = mapVideos.isEmpty ? 0 : videosFromApi.length;
+    int count = mapVideos.isEmpty ? 0 : videosFromApi.length;
 
-    // _page += 1;
+    _page += 1;
 
-    // bool finished = await getPexelsVideos(count: count);
-    // if (!finished) return;
+    bool finished = await getPexelsVideos(count: count);
+    if (!finished) return;
 
-    videosFromApi[0] =
-        'https://player.vimeo.com/external/479728625.sd.mp4?s=f4f886d3d45a0312d8d47419647788178535a2c6&profile_id=165&oauth2_token_id=57447761';
+    // videosFromApi[0] =
+    //     'https://player.vimeo.com/external/479728625.sd.mp4?s=f4f886d3d45a0312d8d47419647788178535a2c6&profile_id=165&oauth2_token_id=57447761';
 
     await loadInitialVideos();
   }
@@ -140,15 +143,42 @@ class ReelsProvider extends ChangeNotifier {
     var pexelsReponse = PexelsResponse.fromJson(decodedBody);
 
     for (var pexel in pexelsReponse.videos) {
-      var videoFiles = pexel.videoFiles
-          .where((e) => e.height <= 900 && e.width <= 540)
-          .toList();
-      if (videoFiles.isEmpty) continue;
+      var videoFile = pexel.videoFiles.firstWhere(
+        (e) => e.height <= 1080 && e.width <= 1920,
+        orElse: () => VideoFile.empty(),
+      );
 
-      videosFromApi[count] = videoFiles.first.link;
+      if (videoFile.id == 0) continue;
+
+      var user = pexel.user;
+      videosFromApi[count] = videoFile.link;
+      reelsContent[count] = ReelsModel(
+        caption: 'Este es el caption carita fachero facherita',
+        storyModel: StoryModel(
+          id: user.id,
+          username: user.name,
+          hasStories: true,
+          isVerified: true,
+          profilePictureUrl: pexel.image,
+        ),
+        videoUrl: videoFile.link,
+        totalComments: Random().nextInt(10000),
+        totalLikes: Random().nextInt(258),
+        totalShares: Random().nextInt(258),
+        extraInfo: user.url,
+        friendName: mockName(),
+      );
       count++;
     }
     notifyListeners();
     return true;
+  }
+
+  onPageChanged(int value) {
+    if (value > _currentIndex) {
+      nextVideo(value);
+    } else {
+      previousVideo(value);
+    }
   }
 }

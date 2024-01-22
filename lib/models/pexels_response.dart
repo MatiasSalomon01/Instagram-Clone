@@ -73,7 +73,7 @@ class VideoFile {
     required this.height,
     required this.link,
   });
-
+  factory VideoFile.empty() => VideoFile(id: 0, width: 0, height: 0, link: '');
   factory VideoFile.fromJson(Map<String, dynamic> json) => VideoFile(
         id: json["id"],
         width: json["width"],
