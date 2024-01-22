@@ -53,11 +53,14 @@ class _LeftSideContent extends StatelessWidget {
       bottom: 0,
       left: 0,
       child: Container(
-        height: 160,
+        // height: 160,
+        constraints: BoxConstraints(maxHeight: 260, minHeight: 160),
         width: MediaQuery.of(context).size.width * .8,
-        padding: const EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.only(left: 15, bottom: 15),
+        // color: lightBlue,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Row(
               children: [
@@ -99,61 +102,56 @@ class _LeftSideContent extends StatelessWidget {
                 ),
               ],
             ),
-            const VerticalSpace(15),
-            if (model.caption != null)
-              Text(
-                model.caption!,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: white,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            const VerticalSpace(10),
-            Row(
-              children: [
-                ProfilePicture(
-                  model: StoryModel(
-                    username: '',
-                  ),
-                  radius: 8,
-                  padding: 0,
-                ),
-                const HorizontalSpace(10),
-                Expanded(
-                  child: Text.rich(
-                    TextSpan(
-                      text: 'Le gusta a ',
-                      style: const TextStyle(color: Colors.white70),
-                      children: [
-                        TextSpan(
-                          text:
-                              // '${content[mockInteger(0, content.length - 1)].storyModel.username} ',
-                              model.friendName,
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const TextSpan(
-                            text: ' y ',
-                            style: TextStyle(color: Colors.white70)),
-                        const TextSpan(
-                          text: '384 personas más',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+            if (model.caption != null) ...[
+              const VerticalSpace(15),
+              _Caption(caption: model.caption!)
+            ],
+            if (model.friendName != null) ...[
+              const VerticalSpace(10),
+              Row(
+                children: [
+                  ProfilePicture(
+                    model: StoryModel(
+                      username: '',
                     ),
-                    style: const TextStyle(height: 1.2),
-                    maxLines: 2,
+                    radius: 8,
+                    padding: 0,
                   ),
-                ),
-              ],
-            ),
+                  const HorizontalSpace(10),
+                  Expanded(
+                    child: Text.rich(
+                      TextSpan(
+                        text: 'Le gusta a ',
+                        style: const TextStyle(color: Colors.white70),
+                        children: [
+                          TextSpan(
+                            text:
+                                // '${content[mockInteger(0, content.length - 1)].storyModel.username} ',
+                                model.friendName,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const TextSpan(
+                              text: ' y ',
+                              style: TextStyle(color: Colors.white70)),
+                          const TextSpan(
+                            text: '384 personas más',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      style: const TextStyle(height: 1.2),
+                      maxLines: 2,
+                    ),
+                  ),
+                ],
+              )
+            ],
             const VerticalSpace(10),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
@@ -189,6 +187,87 @@ class _LeftSideContent extends StatelessWidget {
   }
 }
 
+class _Caption extends StatefulWidget {
+  const _Caption({
+    super.key,
+    required this.caption,
+  });
+
+  final String caption;
+
+  @override
+  State<_Caption> createState() => _CaptionState();
+}
+
+class _CaptionState extends State<_Caption> {
+  bool showMore = false;
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
+      height: showMore ? 100 : 20,
+      child: GestureDetector(
+        onTap: () => setState(() => showMore = !showMore),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              physics: showMore
+                  ? const BouncingScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  // DecoratedBox(
+                  //   decoration: BoxDecoration(
+                  //     gradient: LinearGradient(
+                  //       begin: Alignment.topCenter,
+                  //       end: Alignment.bottomCenter,
+                  //       colors: [
+                  //         Colors.black.withOpacity(0.12), // Color oscuro
+                  //         Colors.transparent, // Color transparente
+                  //       ],
+                  //     ),
+                  //   ),
+                  //   child: Container(
+                  //     height: 10.0, // Ajusta la altura según tu preferencia
+                  //   ),
+                  // ),
+                  Text(
+                    widget.caption,
+                    maxLines: showMore ? 500 : 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // Container(
+            //   // color: backgroundColor.withOpacity(.1),
+            //   height: 50,
+            //   decoration: BoxDecoration(
+            //       // gradient: LinearGradient(
+            //       //   begin: Alignment.topCenter,
+            //       //   end: Alignment.bottomCenter,
+            //       //   colors: [backgroundColor.withOpacity(.2), transparent],
+            //       // ),
+            //       boxShadow: [
+            //         BoxShadow(
+            //           offset: Offset(5, 50),
+            //           color: red,
+            //           blurStyle: BlurStyle.outer,
+            //           blurRadius: 20,
+            //         ),
+            //       ]),
+            // )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _RightSideButton extends StatelessWidget {
   const _RightSideButton({
     super.key,
@@ -204,8 +283,9 @@ class _RightSideButton extends StatelessWidget {
       right: 0,
       child: Container(
         height: MediaQuery.of(context).size.height * .35,
-        width: 54,
-        margin: const EdgeInsets.only(right: 10),
+        width: 60,
+        // padding: const EdgeInsets.only(right: 10),
+        // color: red,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
