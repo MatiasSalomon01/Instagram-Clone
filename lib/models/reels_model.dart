@@ -9,6 +9,7 @@ class ReelsModel {
   final int totalShares;
   final String? friendName;
   final String? extraInfo;
+  final bool showLikes;
 
   ReelsModel({
     required this.storyModel,
@@ -19,5 +20,6 @@ class ReelsModel {
     this.totalShares = 0,
     this.friendName,
     this.extraInfo,
+    this.showLikes = false,
   });
 }

@@ -1,4 +1,5 @@
 import 'package:instagram_clone/constants/others.dart';
+import 'package:intl/intl.dart';
 
 extension DateTimeExtensions on DateTime {
   String getHour() {
@@ -34,5 +35,19 @@ extension DateTimeExtensions on DateTime {
       return 'Hace $value $word';
     }
     return '';
+  }
+}
+
+extension IntExtensions on int {
+  String formatWithSeparator() => NumberFormat('#,###', 'es_ES').format(this);
+  String formatWithWords() {
+    var value = formatWithSeparator();
+    if (value.length == 6) {
+      return "${value.substring(0, 4)} mil";
+    }
+    if (value.length == 7) {
+      return "${value.substring(0, 3)} mil";
+    }
+    return value;
   }
 }

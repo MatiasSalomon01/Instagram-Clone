@@ -159,7 +159,7 @@ class ReelsProvider extends ChangeNotifier {
       var user = pexel.user;
       videosFromApi[count] = videoFile.link;
       reelsContent[count] = ReelsModel(
-        caption: wordGenerator.randomSentence(random.nextInt(50) + 2),
+        caption: wordGenerator.randomSentence(random.nextInt(70) + 2),
         storyModel: StoryModel(
           id: user.id,
           username: user.name,
@@ -169,10 +169,11 @@ class ReelsProvider extends ChangeNotifier {
         ),
         videoUrl: videoFile.link,
         totalComments: random.nextInt(10000),
-        totalLikes: random.nextInt(258),
-        totalShares: random.nextInt(258),
+        totalLikes: random.nextInt(600000),
+        totalShares: random.nextInt(50000),
         extraInfo: user.url,
         friendName: mockName(),
+        showLikes: random.nextBool(),
       );
       count++;
     }
