@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:instagram_clone/models/models.dart';
+import 'package:mock_data/mock_data.dart';
 
 class ContentPostModel {
   final int? id;
@@ -8,6 +11,9 @@ class ContentPostModel {
   final String caption;
   final int totalComments;
   final DateTime createAt;
+  final String? friendName;
+  final bool showLikes;
+  final int totalLikes;
 
   ContentPostModel({
     this.id,
@@ -17,6 +23,9 @@ class ContentPostModel {
     this.caption = '',
     this.totalComments = 0,
     required this.createAt,
+    this.friendName,
+    this.showLikes = true,
+    this.totalLikes = 0,
   });
 
   factory ContentPostModel.fromJson(Map<String, dynamic> map) {
@@ -30,6 +39,9 @@ class ContentPostModel {
         username: map['Stories']['username'],
         profilePictureUrl: map['Stories']['profilePictureUrl'],
       ),
+      friendName: mockName(),
+      showLikes: Random().nextBool(),
+      totalLikes: Random().nextInt(600000),
     );
   }
 

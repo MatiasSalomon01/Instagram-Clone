@@ -66,9 +66,12 @@ class _Information extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              if (model.likedBy.isNotEmpty) ...[
+              if (model.showLikes) ...[
                 ProfilePicture(
-                  model: StoryModel(username: mockName()),
+                  model: StoryModel(
+                    username: model.friendName!,
+                    profilePictureUrl: model.storyModel.profilePictureUrl,
+                  ),
                   radius: 10,
                   padding: 0,
                 ),
@@ -82,26 +85,22 @@ class _Information extends StatelessWidget {
                       style: const TextStyle(color: white),
                       children: [
                         TextSpan(
-                          text:
-                              // '${content[mockInteger(0, content.length - 1)].storyModel.username} ',
-                              mockName(),
+                          text: model.friendName!,
                           style: const TextStyle(
                             color: white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        if (model.likedBy.length > 1) ...[
-                          const TextSpan(
-                              text: 'y ', style: TextStyle(color: white)),
-                          TextSpan(
-                            text:
-                                '${(model.likedBy.length - 1).toString()} personas más',
-                            style: const TextStyle(
-                              color: white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        const TextSpan(
+                            text: ' y ', style: TextStyle(color: white)),
+                        TextSpan(
+                          text:
+                              '${model.totalLikes.formatWithSeparator()} personas más',
+                          style: const TextStyle(
+                            color: white,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
+                        ),
                       ],
                     ),
                   ),
