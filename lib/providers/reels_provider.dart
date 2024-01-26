@@ -36,18 +36,18 @@ class ReelsProvider extends ChangeNotifier {
     // videosFromApi[0] =
     //     'https://player.vimeo.com/external/479728625.sd.mp4?s=f4f886d3d45a0312d8d47419647788178535a2c6&profile_id=165&oauth2_token_id=57447761';
 
-    await loadInitialVideos();
+    if (count == 0) await loadInitialVideos(0);
   }
 
-  Future<void> loadInitialVideos() async {
+  Future<void> loadInitialVideos(int index) async {
     //Inicializar primer video
-    await initializeVideo(0);
+    await initializeVideo(index);
 
     //Reproducir primer video
-    await playVideo(0);
+    await playVideo(index);
 
     //Inicializar segundo video
-    await initializeVideo(1);
+    await initializeVideo(index + 1);
 
     notifyListeners();
   }
@@ -182,8 +182,14 @@ class ReelsProvider extends ChangeNotifier {
     return true;
   }
 
-  onPageChanged(int value) {
+  onPageChanged(int value) async {
     if (value > _currentIndex) {
+      if (videosFromApi.length == value + 1) {
+        _page += 1;
+        await getPexelsVideos(
+          count: mapVideos.isEmpty ? 0 : videosFromApi.length,
+        );
+      }
       nextVideo(value);
     } else {
       previousVideo(value);

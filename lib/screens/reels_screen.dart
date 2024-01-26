@@ -41,18 +41,6 @@ class ReelsScreen extends StatelessWidget {
                   size: 30,
                 ),
               ),
-              // const Positioned(
-              //   left: 21,
-              //   top: 5,
-              //   child: Text(
-              //     'Reels',
-              //     style: TextStyle(
-              //       color: white,
-              //       fontSize: 25,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
