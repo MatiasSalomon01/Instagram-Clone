@@ -1,14 +1,18 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
+import 'package:mock_data/mock_data.dart';
+import 'package:word_generator/word_generator.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
 import '../models/models.dart';
 
 class Comment extends StatefulWidget {
-  const Comment({
-    super.key,
-  });
+  const Comment({super.key, required this.model});
+
+  final CommentModel model;
 
   @override
   State<Comment> createState() => _CommentState();
@@ -16,6 +20,8 @@ class Comment extends StatefulWidget {
 
 class _CommentState extends State<Comment> {
   bool showAnswers = false;
+  final wordGenerator = WordGenerator();
+  final random = Random();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,20 +47,20 @@ class _CommentState extends State<Comment> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       children: [
                         Text(
-                          'username',
-                          style: TextStyle(
+                          widget.model.username,
+                          style: const TextStyle(
                             color: white,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
                         ),
-                        HorizontalSpace(10),
+                        const HorizontalSpace(10),
                         Text(
-                          '3 d',
-                          style: TextStyle(
+                          '${widget.model.days} d',
+                          style: const TextStyle(
                             color: greyText,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
@@ -62,11 +68,11 @@ class _CommentState extends State<Comment> {
                         ),
                       ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(right: 25),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 35),
                       child: Text(
-                        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-                        style: TextStyle(
+                        widget.model.caption,
+                        style: const TextStyle(
                           color: white,
                           fontSize: 12,
                         ),
@@ -101,8 +107,17 @@ class _CommentState extends State<Comment> {
                             const VerticalSpace(20),
                         shrinkWrap: true,
                         padding: const EdgeInsets.only(top: 20),
-                        itemBuilder: (context, index) => const AnswerComment(),
-                        itemCount: 6,
+                        itemBuilder: (context, index) => AnswerComment(
+                          model: CommentModel(
+                            username: '${mockName()} ${mockName()}',
+                            caption: wordGenerator
+                                .randomSentence(random.nextInt(30) + 2),
+                            days: mockInteger(1, 10),
+                            countResponses: mockInteger(1, 50),
+                            countLikes: mockInteger(1, 5000),
+                          ),
+                        ),
+                        itemCount: widget.model.countResponses,
                       ),
                     const VerticalSpace(12),
                     Row(
@@ -118,7 +133,7 @@ class _CommentState extends State<Comment> {
                           child: Text(
                             showAnswers
                                 ? 'Ocultar respuestas'
-                                : 'Ver 7 respuestas',
+                                : 'Ver ${widget.model.countResponses} respuestas',
                             style: const TextStyle(
                               color: greyText,
                               fontWeight: FontWeight.w500,
@@ -133,7 +148,7 @@ class _CommentState extends State<Comment> {
               ),
             ],
           ),
-          const Positioned(
+          Positioned(
             right: 0,
             // color: Colors.yellow,
             child: SvgAnimatedIcon(
@@ -142,9 +157,9 @@ class _CommentState extends State<Comment> {
               isPressed: false,
               height: 18,
               svgColor: greyText,
-              svgColorSelected: Color(0xffff3040),
+              svgColorSelected: const Color(0xffff3040),
               addCounter: true,
-              counter: 10,
+              counter: widget.model.countLikes,
             ),
           ),
         ],

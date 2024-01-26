@@ -333,6 +333,7 @@ class _RightSideButton extends StatelessWidget {
                   onTap: () => ContentItemHelper.showCommentsModal(
                     context,
                     isScrollControlled: true,
+                    count: model.totalComments,
                   ),
                 ),
                 const VerticalSpace(4),

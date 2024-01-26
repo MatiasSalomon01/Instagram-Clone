@@ -6,8 +6,8 @@ import '../constants/icons.dart';
 import '../models/models.dart';
 
 class AnswerComment extends StatelessWidget {
-  const AnswerComment({super.key});
-
+  const AnswerComment({super.key, required this.model});
+  final CommentModel model;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,7 +25,7 @@ class AnswerComment extends StatelessWidget {
           ),
         ),
         const HorizontalSpace(5),
-        const Expanded(
+        Expanded(
           flex: 5,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,17 +33,17 @@ class AnswerComment extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'username',
-                    style: TextStyle(
+                    model.username,
+                    style: const TextStyle(
                       color: white,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                     ),
                   ),
-                  HorizontalSpace(10),
+                  const HorizontalSpace(10),
                   Text(
-                    '3 d',
-                    style: TextStyle(
+                    '${model.days} d',
+                    style: const TextStyle(
                       color: greyText,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
@@ -52,14 +52,14 @@ class AnswerComment extends StatelessWidget {
                 ],
               ),
               Text(
-                'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
-                style: TextStyle(
+                model.caption,
+                style: const TextStyle(
                   color: white,
                   fontSize: 12,
                 ),
               ),
-              VerticalSpace(5),
-              Row(
+              const VerticalSpace(5),
+              const Row(
                 children: [
                   Text(
                     'Responder',
@@ -84,15 +84,15 @@ class AnswerComment extends StatelessWidget {
           ),
         ),
         const HorizontalSpace(8),
-        const SvgAnimatedIcon(
+        SvgAnimatedIcon(
           svgIcon: favoriteIcon,
           svgIconPressed: favoriteIconSelected,
           isPressed: false,
           height: 18,
           svgColor: greyText,
-          svgColorSelected: Color(0xffff3040),
+          svgColorSelected: const Color(0xffff3040),
           addCounter: true,
-          counter: 10,
+          counter: model.countLikes,
         ),
       ],
     );

@@ -38,7 +38,7 @@ extension DateTimeExtensions on DateTime {
   }
 }
 
-extension IntExtensions on int {
+extension IntExtensions on int? {
   String formatWithSeparator() => NumberFormat('#,###', 'es_ES').format(this);
   String formatWithWords() {
     var value = formatWithSeparator();

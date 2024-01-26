@@ -4,7 +4,6 @@ import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/extensions/extensions.dart';
 import 'package:instagram_clone/models/models.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
-import 'package:mock_data/mock_data.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/helpers.dart';
@@ -133,7 +132,8 @@ class _Information extends StatelessWidget {
           ],
           const VerticalSpace(6),
           GestureDetector(
-            onTap: () => ContentItemHelper.showCommentsModal(context),
+            onTap: () => ContentItemHelper.showCommentsModal(context,
+                count: model.totalComments),
             child: Text(
               'Ver los ${model.totalComments} comentarios',
               style: const TextStyle(color: whiteOpaque),
@@ -186,6 +186,7 @@ class _Buttons extends StatelessWidget {
                     onTap: () => ContentItemHelper.showCommentsModal(
                       context,
                       isScrollControlled: true,
+                      count: model.totalComments,
                     ),
                   ),
                   const SvgString(icon: shareIcon),

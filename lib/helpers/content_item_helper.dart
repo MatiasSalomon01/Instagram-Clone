@@ -1,14 +1,32 @@
+import 'dart:math';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/story_model.dart';
+import 'package:mock_data/mock_data.dart';
+import 'package:word_generator/word_generator.dart';
 
 import '../constants/colors.dart';
+import '../models/models.dart';
 import '../widgets/widgets.dart';
 
 class ContentItemHelper {
   static void showCommentsModal(BuildContext context,
-      {bool isScrollControlled = false}) {
+      {bool isScrollControlled = false, int count = 0}) {
     final size = MediaQuery.of(context).size;
+    final wordGenerator = WordGenerator();
+    final random = Random();
+
+    final comments = List.generate(
+      count,
+      (index) => CommentModel(
+        username: '${mockName()} ${mockName()}',
+        caption: wordGenerator.randomSentence(random.nextInt(30) + 2),
+        days: mockInteger(1, 10),
+        countResponses: mockInteger(1, 15),
+        countLikes: mockInteger(1, 5000),
+      ),
+    );
 
     showModalBottomSheet(
       context: context,
@@ -21,12 +39,12 @@ class ContentItemHelper {
             top: Radius.circular(15),
           ),
         ),
-        child: const Column(
+        child: Column(
           children: [
-            _Header(),
-            CustomDivider(color: greyText),
-            _Body(),
-            _TextFormField(),
+            const _Header(),
+            const CustomDivider(color: greyText),
+            _Body(models: comments),
+            const _TextFormField(),
           ],
         ),
       ),
@@ -66,7 +84,9 @@ class _Header extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body();
+  const _Body({required this.models});
+
+  final List<CommentModel> models;
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +94,8 @@ class _Body extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         padding: const EdgeInsets.all(10),
-        itemBuilder: (context, index) => const Comment(),
-        itemCount: 10,
+        itemBuilder: (context, index) => Comment(model: models[index]),
+        itemCount: models.length,
       ),
     );
   }
