@@ -38,6 +38,8 @@ class ContentPostModel {
         id: map['Stories']['id'],
         username: map['Stories']['username'],
         profilePictureUrl: map['Stories']['profilePictureUrl'],
+        hasStories: map['Stories']['hasStories'],
+        isVerified: map['Stories']['isVerified'],
       ),
       friendName: mockName(),
       showLikes: Random().nextBool(),

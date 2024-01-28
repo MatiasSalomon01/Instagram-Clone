@@ -13,11 +13,19 @@ class ReelsProvider extends ChangeNotifier {
   Map<int, ReelsModel> reelsContent = {};
   int _currentIndex = 0;
   int _page = 0;
+  bool _darkenScreen = false;
 
   int get currentIndex => _currentIndex;
 
   set currentIndex(int value) {
     _currentIndex = value;
+    notifyListeners();
+  }
+
+  bool get darkenScreen => _darkenScreen;
+
+  set darkenScreen(bool value) {
+    _darkenScreen = value;
     notifyListeners();
   }
 
@@ -147,9 +155,9 @@ class ReelsProvider extends ChangeNotifier {
     final wordGenerator = WordGenerator();
     for (var pexel in pexelsReponse.videos) {
       var videoFile = pexel.videoFiles.firstWhere(
-        (v) => v.height == 1920 && v.width == 1080,
+        (v) => v.height == 1280 && v.width == 720,
         orElse: () => pexel.videoFiles.firstWhere(
-          (vi) => vi.height <= 1920 && vi.width <= 1080,
+          (vi) => vi.height <= 1280 && vi.width <= 720,
           orElse: () => VideoFile.empty(),
         ),
       );

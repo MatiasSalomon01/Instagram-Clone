@@ -25,8 +25,8 @@ class ContentProvider extends ChangeNotifier {
     var content = await supabase
         .from('ContentPosts')
         .select(
-            'id, caption, createAt, totalComments, Stories!ContentPosts_storyid_fkey(id, username, profilePictureUrl)')
-        .order('createAt', ascending: false)
+            'id, caption, createAt, totalComments, Stories!ContentPosts_storyid_fkey(id, username, hasStories, isVerified, profilePictureUrl)')
+        .order('createAt')
         .range(_takeContent, _takeContent + _interval)
         .withConverter((data) => data.map(ContentPostModel.fromJson).toList());
 
@@ -57,6 +57,7 @@ class ContentProvider extends ChangeNotifier {
     var stories = await supabase
         .from('Stories')
         .select('id, username, isMe, hasStories, isVerified, profilePictureUrl')
+        .order('id', ascending: true)
         .range(_takeStories, _takeStories + _interval)
         .withConverter((data) => data.map(StoryModel.fromJson).toList());
 

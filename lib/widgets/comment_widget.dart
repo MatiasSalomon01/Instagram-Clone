@@ -36,8 +36,8 @@ class _CommentState extends State<Comment> {
                   radius: 16,
                   padding: 2,
                   model: StoryModel(
-                    username: 'lol',
-                    hasStories: true,
+                    username: '',
+                    hasStories: random.nextBool(),
                   ),
                   marginColor: grey,
                 ),

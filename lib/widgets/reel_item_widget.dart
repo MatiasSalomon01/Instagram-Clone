@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/extensions/extensions.dart';
 import 'package:instagram_clone/models/models.dart';
+import 'package:instagram_clone/providers/providers.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 
@@ -33,6 +35,7 @@ class ReelItem extends StatelessWidget {
                 ? VideoPlayer(controller)
                 : const Loader(),
           ),
+          const _Opacity(),
           _RightSideButton(model: model),
           _LeftSideContent(model: model),
         ],
@@ -41,9 +44,34 @@ class ReelItem extends StatelessWidget {
   }
 }
 
+class _Opacity extends StatelessWidget {
+  const _Opacity();
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ReelsProvider>(
+      builder: (context, state, child) {
+        if (state.darkenScreen) {
+          return GestureDetector(
+            onTap: () => state.darkenScreen = !state.darkenScreen,
+            child: Container(
+              color: backgroundColor.withOpacity(.4),
+            ),
+          );
+        } else {
+          return Container(
+            height: 1,
+            width: 1,
+            color: red,
+          );
+        }
+      },
+    );
+  }
+}
+
 class _LeftSideContent extends StatelessWidget {
   const _LeftSideContent({
-    super.key,
     required this.model,
   });
 
@@ -202,84 +230,40 @@ class _LeftSideContent extends StatelessWidget {
   }
 }
 
-class _Caption extends StatefulWidget {
+class _Caption extends StatelessWidget {
   const _Caption({
-    super.key,
     required this.caption,
   });
 
   final String caption;
 
   @override
-  State<_Caption> createState() => _CaptionState();
-}
-
-class _CaptionState extends State<_Caption> {
-  bool showMore = false;
-
-  @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 150),
-      height: showMore ? 150 : 20,
-      // constraints: BoxConstraints(maxHeight: 150),
-      // color: red,
-      child: GestureDetector(
-        onTap: () => setState(() => showMore = !showMore),
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              physics: showMore
-                  ? const BouncingScrollPhysics()
-                  : const NeverScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  // DecoratedBox(
-                  //   decoration: BoxDecoration(
-                  //     gradient: LinearGradient(
-                  //       begin: Alignment.topCenter,
-                  //       end: Alignment.bottomCenter,
-                  //       colors: [
-                  //         Colors.black.withOpacity(0.12), // Color oscuro
-                  //         Colors.transparent, // Color transparente
-                  //       ],
-                  //     ),
-                  //   ),
-                  //   child: Container(
-                  //     height: 10.0, // Ajusta la altura según tu preferencia
-                  //   ),
-                  // ),
-                  Text(
-                    widget.caption,
-                    maxLines: showMore ? 500 : 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: white,
-                      fontWeight: FontWeight.w400,
-                    ),
+    return Consumer<ReelsProvider>(
+      builder: (context, state, child) => AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        height: state.darkenScreen ? 150 : 20,
+        constraints: const BoxConstraints(maxHeight: 150),
+        child: GestureDetector(
+          onTap: () => state.darkenScreen = !state.darkenScreen,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                physics: state.darkenScreen
+                    ? const BouncingScrollPhysics()
+                    : const NeverScrollableScrollPhysics(),
+                child: Text(
+                  caption,
+                  maxLines: state.darkenScreen ? 500 : 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: white,
+                    fontWeight: FontWeight.w400,
                   ),
-                ],
+                ),
               ),
-            ),
-            // Container(
-            //   // color: backgroundColor.withOpacity(.1),
-            //   height: 50,
-            //   decoration: BoxDecoration(
-            //       // gradient: LinearGradient(
-            //       //   begin: Alignment.topCenter,
-            //       //   end: Alignment.bottomCenter,
-            //       //   colors: [backgroundColor.withOpacity(.2), transparent],
-            //       // ),
-            //       boxShadow: [
-            //         BoxShadow(
-            //           offset: Offset(5, 50),
-            //           color: red,
-            //           blurStyle: BlurStyle.outer,
-            //           blurRadius: 20,
-            //         ),
-            //       ]),
-            // )
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -288,7 +272,6 @@ class _CaptionState extends State<_Caption> {
 
 class _RightSideButton extends StatelessWidget {
   const _RightSideButton({
-    super.key,
     required this.model,
   });
 
@@ -299,11 +282,9 @@ class _RightSideButton extends StatelessWidget {
     return Positioned(
       bottom: 0,
       right: 0,
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height * .37,
         width: 60,
-        // padding: const EdgeInsets.only(right: 10),
-        // color: red,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
