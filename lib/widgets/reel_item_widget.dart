@@ -30,7 +30,7 @@ class ReelItem extends StatelessWidget {
       child: Stack(
         children: [
           AspectRatio(
-            aspectRatio: controller.value.aspectRatio,
+            aspectRatio: 9 / 16,
             child: controller.value.isInitialized
                 ? VideoPlayer(controller)
                 : const Loader(),
