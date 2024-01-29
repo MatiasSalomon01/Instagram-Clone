@@ -7,7 +7,7 @@ class ContentPostModel {
   final int? id;
   final StoryModel storyModel;
   final List<StoryModel> likedBy;
-  final List<Posts> posts;
+  List<Posts> posts;
   final String caption;
   final int totalComments;
   final DateTime createAt;

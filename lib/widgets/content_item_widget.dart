@@ -223,12 +223,14 @@ class _Post extends StatelessWidget {
       height: 450,
       child: !hasMoreThenOnePost || model.posts.isEmpty
           ? FilePost(
+              index: 0,
               url: model.storyModel.profilePictureUrl,
               isVideo: false,
             )
           : PageView.builder(
               itemCount: 10,
               itemBuilder: (context, index) => FilePost(
+                index: index,
                 url: model.posts[index].fileUrl,
                 isVideo: model.posts[index].isVideo(),
               ),

@@ -32,13 +32,25 @@ class ContentProvider extends ChangeNotifier {
 
     // var ids = content.map((e) => e.id!).toList();
 
-    // var prueba = await supabase
+    // var postsUrl = await supabase
     //     .from('ContentPostsUrls')
-    //     .select('id, url')
+    //     .select('id, contentId, url')
     //     .inFilter('contentId', ids)
-    //     .range(_takeContent, _takeContent + _interval);
+    //     .withConverter(
+    //         (data) => data.map(ContentPostUrlModel.fromJson).toList());
 
-    // print(prueba);
+    // content = content.map((e) {
+    //   var posts = postsUrl
+    //       .where((element) => element.contentId == e.id)
+    //       .map((e) => Posts(fileUrl: e.url))
+    //       .toList();
+
+    //   if (posts.isNotEmpty) {
+    //     e.posts = posts;
+    //   }
+
+    //   return e;
+    // }).toList();
 
     this.content.addAll(content);
     _takeContent += _interval;
