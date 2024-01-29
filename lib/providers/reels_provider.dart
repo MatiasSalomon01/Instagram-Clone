@@ -14,6 +14,22 @@ class ReelsProvider extends ChangeNotifier {
   int _currentIndex = 0;
   int _page = 0;
   bool _darkenScreen = false;
+  final _random = Random();
+  final _wordGenerator = WordGenerator();
+  final queryWords = [
+    'nature',
+    'landscape',
+    'high resolution',
+    'beautiful',
+    'cars',
+    'sunset',
+    'sky',
+    'night',
+    'galaxy',
+    'planets',
+    'paint',
+    'art'
+  ];
 
   int get currentIndex => _currentIndex;
 
@@ -30,6 +46,8 @@ class ReelsProvider extends ChangeNotifier {
   }
 
   ReelsProvider() {
+    // print('videosFromApi: ${videosFromApi.length}');
+    // print('reelsContent: ${reelsContent.length}');
     getVideosFromApi();
   }
 
@@ -122,7 +140,14 @@ class ReelsProvider extends ChangeNotifier {
     for (var item in mapVideos.entries) {
       item.value.dispose();
     }
+
+    // print('videosFromApi: ${videosFromApi.length}');
+    // print('reelsContent : ${reelsContent.length}');
     super.dispose();
+  }
+
+  String getSearchWord() {
+    return queryWords[_random.nextInt(queryWords.length - 1)];
   }
 
   static const _authority = 'api.pexels.com';
@@ -133,11 +158,13 @@ class ReelsProvider extends ChangeNotifier {
   Future<bool> getPexelsVideos({int count = 0}) async {
     print('PETICION A PEXELS');
 
+    final word = getSearchWord();
+    print('query: $word');
     final url = Uri.https(
       _authority,
       '/videos/search',
       {
-        'query': 'nature',
+        'query': word,
         'orientation': 'portrait',
         'page': '$_page',
         'per_page': '5'
@@ -151,8 +178,6 @@ class ReelsProvider extends ChangeNotifier {
     var decodedBody = json.decode(response.body) as Map<String, dynamic>;
     var pexelsReponse = PexelsResponse.fromJson(decodedBody);
 
-    final random = Random();
-    final wordGenerator = WordGenerator();
     for (var pexel in pexelsReponse.videos) {
       var videoFile = pexel.videoFiles.firstWhere(
         (v) => v.height == 1280 && v.width == 720,
@@ -167,21 +192,21 @@ class ReelsProvider extends ChangeNotifier {
       var user = pexel.user;
       videosFromApi[count] = videoFile.link;
       reelsContent[count] = ReelsModel(
-        caption: wordGenerator.randomSentence(random.nextInt(70) + 2),
+        caption: _wordGenerator.randomSentence(_random.nextInt(70) + 2),
         storyModel: StoryModel(
           id: user.id,
           username: user.name,
-          hasStories: true,
-          isVerified: true,
+          hasStories: _random.nextBool(),
+          isVerified: _random.nextBool(),
           profilePictureUrl: pexel.image,
         ),
         videoUrl: videoFile.link,
-        totalComments: random.nextInt(10000),
-        totalLikes: random.nextInt(600000),
-        totalShares: random.nextInt(50000),
+        totalComments: _random.nextInt(10000),
+        totalLikes: _random.nextInt(600000),
+        totalShares: _random.nextInt(50000),
         extraInfo: user.url,
         friendName: mockName(),
-        showLikes: random.nextBool(),
+        showLikes: _random.nextBool(),
       );
       count++;
     }
