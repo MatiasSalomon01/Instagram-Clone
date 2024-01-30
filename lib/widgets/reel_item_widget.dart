@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/extensions/extensions.dart';
@@ -25,24 +26,127 @@ class ReelItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: transparent,
-      child: Stack(
-        children: [
-          AspectRatio(
-            aspectRatio: 9 / 16,
-            child: controller.value.isInitialized
-                ? VideoPlayer(controller)
-                : const Loader(),
+    return ChangeNotifierProvider(
+      create: (context) => FavoriteProvider(),
+      builder: (context, child) => GestureDetector(
+        onDoubleTap: () => context.read<FavoriteProvider>().startAnimation(),
+        child: Container(
+          color: transparent,
+          child: Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: 9 / 16,
+                child: controller.value.isInitialized
+                    ? VideoPlayer(controller)
+                    : const Loader(),
+              ),
+              const _Opacity(),
+              _RightSideButton(model: model),
+              _LeftSideContent(model: model),
+              Positioned(
+                left: 0,
+                right: 0,
+                top: MediaQuery.of(context).size.height * .4,
+                child: Consumer<FavoriteProvider>(
+                  builder: (context, state, child) {
+                    if (state.show) {
+                      return state.animate
+                          ? Pulse(
+                              duration: const Duration(milliseconds: 250),
+                              animate: true,
+                              child: const SvgString(
+                                icon: favoriteIconSelected,
+                                height: 60,
+                              ),
+                            )
+                          : const SizedBox(
+                              width: 1,
+                              height: 1,
+                            );
+                    }
+                    return const SizedBox(
+                      width: 1,
+                      height: 1,
+                    );
+                  },
+                ),
+              ),
+              // _Heart(),
+            ],
           ),
-          const _Opacity(),
-          _RightSideButton(model: model),
-          _LeftSideContent(model: model),
-        ],
+        ),
       ),
     );
   }
 }
+
+// class _Heart extends StatefulWidget {
+//   const _Heart();
+
+//   @override
+//   State<_Heart> createState() => _HeartState();
+// }
+
+// class _HeartState extends State<_Heart> with SingleTickerProviderStateMixin {
+//   late final AnimationController controller;
+//   late Animation<double> scale;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     controller = AnimationController(
+//       vsync: this,
+//       duration: const Duration(milliseconds: 100),
+//       reverseDuration: const Duration(milliseconds: 100),
+//     );
+//     scale = Tween<double>(begin: .9, end: 1.3).animate(controller);
+//     // controller.addListener(() {
+//     //   var animate = context.watch<FavoriteProvider>().animate;
+//     //   print(animate);
+//     //   if (animate) {
+//     //     controller.forward().whenComplete(() => controller.reverse());
+//     //   }
+//     // });
+//   }
+
+//   @override
+//   void dispose() {
+//     controller.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var animate = context.watch<FavoriteProvider>().animate;
+//     if (animate) {
+//       controller.forward().whenComplete(() {
+//         controller.reverse().whenComplete(() {
+//           Future.microtask(() {
+//             Future.delayed(Duration(milliseconds: 1000));
+//           });
+//           context.read<FavoriteProvider>().animate = false;
+//         });
+//       });
+//     }
+//     return Positioned(
+//       left: 0,
+//       right: 0,
+//       top: MediaQuery.of(context).size.height * .4,
+//       child: ScaleTransition(
+//         scale: scale,
+//         child: animate
+//             ? const SvgString(
+//                 icon: favoriteIconSelected,
+//                 height: 60,
+//               )
+//             : Container(
+//                 width: 1,
+//                 height: 1,
+//               ),
+//       ),
+//     );
+//   }
+// }
 
 class _Opacity extends StatelessWidget {
   const _Opacity();
@@ -110,6 +214,10 @@ class _LeftSideContent extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                if (model.storyModel.isVerified) ...[
+                  const HorizontalSpace(5),
+                  const Icon(Icons.verified, color: white, size: 18)
+                ],
                 const HorizontalSpace(10),
                 Container(
                   decoration: BoxDecoration(
@@ -290,12 +398,17 @@ class _RightSideButton extends StatelessWidget {
           children: [
             Column(
               children: [
-                const SvgAnimatedIcon(
+                // Consumer<FavoriteProvider>(
+                //    builder: (context, state, child) =>
+                SvgAnimatedIcon(
+                  onTap: () =>
+                      context.read<FavoriteProvider>().startAnimation(),
                   svgIcon: favoriteIcon,
                   svgIconPressed: favoriteIconSelected,
-                  isPressed: false,
-                  svgColorSelected: Color(0xffff3040),
+                  isPressed: context.watch<FavoriteProvider>().show,
+                  svgColorSelected: const Color(0xffff3040),
                 ),
+                // ),
                 const VerticalSpace(4),
                 Text(
                   model.totalLikes.formatWithWords(),

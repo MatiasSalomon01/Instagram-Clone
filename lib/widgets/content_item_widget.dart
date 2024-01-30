@@ -175,11 +175,12 @@ class _Buttons extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SvgAnimatedIcon(
+                  SvgAnimatedIcon(
                     svgIcon: favoriteIcon,
                     svgIconPressed: favoriteIconSelected,
                     isPressed: false,
-                    svgColorSelected: Color(0xffff3040),
+                    svgColorSelected: const Color(0xffff3040),
+                    onTap: () {},
                   ),
                   SvgString(
                     icon: commentIcon,
@@ -193,10 +194,11 @@ class _Buttons extends StatelessWidget {
                 ],
               ),
             ),
-            const SvgAnimatedIcon(
+            SvgAnimatedIcon(
               svgIcon: saveIcon,
               svgIconPressed: saveIconSelected,
               isPressed: false,
+              onTap: () {},
             ),
           ],
         ),

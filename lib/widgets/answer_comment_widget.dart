@@ -95,6 +95,7 @@ class AnswerComment extends StatelessWidget {
           svgColorSelected: const Color(0xffff3040),
           addCounter: true,
           counter: model.countLikes,
+          onTap: () {},
         ),
       ],
     );

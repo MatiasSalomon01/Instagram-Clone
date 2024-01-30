@@ -14,6 +14,7 @@ class SvgAnimatedIcon extends StatefulWidget {
     this.height = 25,
     this.addCounter = false,
     this.counter,
+    required this.onTap,
   });
 
   final String svgIcon;
@@ -24,6 +25,7 @@ class SvgAnimatedIcon extends StatefulWidget {
   final double height;
   final bool addCounter;
   final int? counter;
+  final VoidCallback onTap;
 
   @override
   State<SvgAnimatedIcon> createState() => _SvgAnimatedIconState();
@@ -69,6 +71,7 @@ class _SvgAnimatedIconState extends State<SvgAnimatedIcon>
         }
       }
     });
+    widget.onTap();
   }
 
   @override

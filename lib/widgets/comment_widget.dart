@@ -160,6 +160,7 @@ class _CommentState extends State<Comment> {
               svgColorSelected: const Color(0xffff3040),
               addCounter: true,
               counter: widget.model.countLikes,
+              onTap: () {},
             ),
           ),
         ],

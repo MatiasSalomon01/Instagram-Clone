@@ -28,7 +28,16 @@ class ReelsProvider extends ChangeNotifier {
     'galaxy',
     'planets',
     'paint',
-    'art'
+    'art',
+    'girls',
+    'sports',
+    'beer',
+    'food',
+    'black',
+    'blue',
+    'movies',
+    'tv shows',
+    'music'
   ];
 
   int get currentIndex => _currentIndex;
@@ -147,7 +156,7 @@ class ReelsProvider extends ChangeNotifier {
   }
 
   String getSearchWord() {
-    return queryWords[_random.nextInt(queryWords.length - 1)];
+    return queryWords[_random.nextInt(queryWords.length)];
   }
 
   static const _authority = 'api.pexels.com';
@@ -159,7 +168,7 @@ class ReelsProvider extends ChangeNotifier {
     print('PETICION A PEXELS');
 
     final word = getSearchWord();
-    print('query: $word');
+    // print('query: $word');
     final url = Uri.https(
       _authority,
       '/videos/search',
