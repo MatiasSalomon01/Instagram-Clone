@@ -1,10 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
 import '../constants/colors.dart';
 import '../constants/icons.dart';
+import '../constants/others.dart';
 import '../models/models.dart';
 
 class AnswerComment extends StatelessWidget {
@@ -21,7 +20,7 @@ class AnswerComment extends StatelessWidget {
             padding: 2,
             model: StoryModel(
               username: 'lol',
-              hasStories: Random().nextBool(),
+              hasStories: random.nextBool(),
             ),
             marginColor: grey,
           ),

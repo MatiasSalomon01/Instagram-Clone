@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/models.dart';
 import 'package:mock_data/mock_data.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
-import 'package:word_generator/word_generator.dart';
 
 import '../constants/others.dart';
 

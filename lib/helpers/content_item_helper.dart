@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/models/story_model.dart';
 import 'package:mock_data/mock_data.dart';
-import 'package:word_generator/word_generator.dart';
 
 import '../constants/colors.dart';
+import '../constants/others.dart';
 import '../models/models.dart';
 import '../widgets/widgets.dart';
 
@@ -14,8 +11,6 @@ class ContentItemHelper {
   static void showCommentsModal(BuildContext context,
       {bool isScrollControlled = false, int count = 0}) {
     final size = MediaQuery.of(context).size;
-    final wordGenerator = WordGenerator();
-    final random = Random();
 
     final comments = List.generate(
       count,

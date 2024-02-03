@@ -1,7 +1,7 @@
-import 'dart:math';
-
 import 'package:instagram_clone/models/models.dart';
 import 'package:mock_data/mock_data.dart';
+
+import '../constants/others.dart';
 
 class ContentPostModel {
   final int? id;
@@ -42,8 +42,8 @@ class ContentPostModel {
         isVerified: map['Stories']['isVerified'],
       ),
       friendName: mockName(),
-      showLikes: Random().nextBool(),
-      totalLikes: Random().nextInt(600000),
+      showLikes: random.nextBool(),
+      totalLikes: random.nextInt(600000),
     );
   }
 
