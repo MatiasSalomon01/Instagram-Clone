@@ -370,7 +370,7 @@ class _RightSideButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(3),
                 child: CachedNetworkImage(
                   imageUrl: model.storyModel.profilePictureUrl!,
-                  placeholderFadeInDuration: const Duration(milliseconds: 500),
+                  placeholderFadeInDuration: const Duration(milliseconds: 300),
                   fit: BoxFit.cover,
                 ),
               ),

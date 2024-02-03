@@ -32,7 +32,7 @@ class FilePost extends StatelessWidget {
             )
           : CachedNetworkImage(
               imageUrl: url!,
-              placeholderFadeInDuration: const Duration(milliseconds: 500),
+              placeholderFadeInDuration: const Duration(milliseconds: 300),
               fit: BoxFit.cover,
               width: size.width,
             );

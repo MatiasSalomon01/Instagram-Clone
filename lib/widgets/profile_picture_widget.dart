@@ -58,7 +58,7 @@ class ProfilePicture extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl: model.profilePictureUrl!,
                       placeholderFadeInDuration:
-                          const Duration(milliseconds: 500),
+                          const Duration(milliseconds: 300),
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,

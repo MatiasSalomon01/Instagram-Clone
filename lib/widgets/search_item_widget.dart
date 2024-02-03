@@ -57,7 +57,7 @@ class SeachItem extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           imageUrl: url,
-          placeholderFadeInDuration: const Duration(milliseconds: 500),
+          placeholderFadeInDuration: const Duration(milliseconds: 300),
           fit: BoxFit.cover,
         ),
       ),
