@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:word_generator/word_generator.dart';
 
 const String defaultProfilePicture = 'assets/defaultProfilePicture.jpg';
 
@@ -63,3 +66,6 @@ final List<String> colorWords = [
   'gray',
   'white'
 ];
+
+final random = Random();
+final wordGenerator = WordGenerator();

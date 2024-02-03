@@ -39,24 +39,24 @@ class _LayoutOnlyImages extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              SeachItem(url: photos[0].src.tiny),
-              SeachItem(url: photos[1].src.tiny),
+              SeachItem(url: photos[0].src.tiny, photo: photos[0]),
+              SeachItem(url: photos[1].src.tiny, photo: photos[1]),
             ],
           ),
         ),
         Expanded(
           child: Column(
             children: [
-              SeachItem(url: photos[2].src.tiny),
-              SeachItem(url: photos[3].src.tiny),
+              SeachItem(url: photos[2].src.tiny, photo: photos[2]),
+              SeachItem(url: photos[3].src.tiny, photo: photos[3]),
             ],
           ),
         ),
         Expanded(
           child: Column(
             children: [
-              SeachItem(url: photos[4].src.tiny),
-              SeachItem(url: photos[5].src.tiny),
+              SeachItem(url: photos[4].src.tiny, photo: photos[4]),
+              SeachItem(url: photos[5].src.tiny, photo: photos[5]),
             ],
           ),
         ),
@@ -80,16 +80,22 @@ class _LayoutWithVideo extends StatelessWidget {
       children: [
         if (!isEven)
           Expanded(
-            child: SeachItem(multiplier: 2, url: photos[0].src.portrait),
+            child: SeachItem(
+              multiplier: 2,
+              url: photos[0].src.portrait,
+              photo: photos[0],
+            ),
           ),
         Expanded(
           child: Column(
             children: [
               SeachItem(
                 url: photos[1].src.tiny,
+                photo: photos[1],
               ),
               SeachItem(
                 url: photos[2].src.tiny,
+                photo: photos[2],
               ),
             ],
           ),
@@ -99,16 +105,22 @@ class _LayoutWithVideo extends StatelessWidget {
             children: [
               SeachItem(
                 url: photos[3].src.tiny,
+                photo: photos[3],
               ),
               SeachItem(
                 url: photos[4].src.tiny,
+                photo: photos[4],
               ),
             ],
           ),
         ),
         if (isEven)
           Expanded(
-            child: SeachItem(url: photos[0].src.portrait, multiplier: 2),
+            child: SeachItem(
+              url: photos[0].src.portrait,
+              multiplier: 2,
+              photo: photos[0],
+            ),
           ),
       ],
     );

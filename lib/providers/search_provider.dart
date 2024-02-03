@@ -22,16 +22,15 @@ class SearchProvider extends ChangeNotifier {
       }
     });
   }
-  final _random = Random();
 
   bool isLoading = false;
 
   String getSearchWord() {
-    return queryWords[_random.nextInt(queryWords.length)];
+    return queryWords[random.nextInt(queryWords.length)];
   }
 
   String getColorWord() {
-    return colorWords[_random.nextInt(queryWords.length)];
+    return colorWords[random.nextInt(queryWords.length)];
   }
 
   Future<bool> getPexelsImages({int page = 1}) async {
