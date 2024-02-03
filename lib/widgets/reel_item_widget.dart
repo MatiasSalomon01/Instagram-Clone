@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/icons.dart';
 import 'package:instagram_clone/extensions/extensions.dart';
@@ -367,9 +368,9 @@ class _RightSideButton extends StatelessWidget {
               padding: const EdgeInsets.all(1.5),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(3),
-                child: Image.network(
-                  // 'https://images.pexels.com/videos/5896379/pictures/preview-0.jpeg',
-                  model.storyModel.profilePictureUrl!,
+                child: CachedNetworkImage(
+                  imageUrl: model.storyModel.profilePictureUrl!,
+                  placeholderFadeInDuration: const Duration(milliseconds: 500),
                   fit: BoxFit.cover,
                 ),
               ),

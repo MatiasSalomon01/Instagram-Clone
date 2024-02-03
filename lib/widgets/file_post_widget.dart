@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/others.dart';
 import 'package:instagram_clone/providers/providers.dart';
@@ -29,8 +30,9 @@ class FilePost extends StatelessWidget {
               fit: BoxFit.cover,
               width: size.width,
             )
-          : Image.network(
-              url!,
+          : CachedNetworkImage(
+              imageUrl: url!,
+              placeholderFadeInDuration: const Duration(milliseconds: 500),
               fit: BoxFit.cover,
               width: size.width,
             );

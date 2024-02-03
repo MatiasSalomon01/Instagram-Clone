@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/others.dart';
 
@@ -52,7 +53,22 @@ class ProfilePicture extends StatelessWidget {
                 : CircleAvatar(
                     radius: radius,
                     backgroundColor: grey,
+                    // backgroundImage: NetworkImage(model.profilePictureUrl!),
                     backgroundImage: NetworkImage(model.profilePictureUrl!),
+                    child: CachedNetworkImage(
+                      imageUrl: model.profilePictureUrl!,
+                      placeholderFadeInDuration:
+                          const Duration(milliseconds: 500),
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
           ),
         ),

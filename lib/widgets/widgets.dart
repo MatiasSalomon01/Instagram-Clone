@@ -1,3 +1,5 @@
+export 'package:instagram_clone/widgets/search_item_layout_widget.dart';
+export 'package:instagram_clone/widgets/search_item_widget.dart';
 export 'package:instagram_clone/widgets/reel_item_widget.dart';
 export 'package:instagram_clone/widgets/loader_widget.dart';
 export 'package:instagram_clone/widgets/answer_comment_widget.dart';

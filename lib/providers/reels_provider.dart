@@ -7,6 +7,8 @@ import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 import 'package:word_generator/word_generator.dart';
 
+import '../constants/others.dart';
+
 class ReelsProvider extends ChangeNotifier {
   Map<int, VideoPlayerController> mapVideos = {};
   Map<int, String> videosFromApi = {};
@@ -16,29 +18,6 @@ class ReelsProvider extends ChangeNotifier {
   bool _darkenScreen = false;
   final _random = Random();
   final _wordGenerator = WordGenerator();
-  final queryWords = [
-    'nature',
-    'landscape',
-    'high resolution',
-    'beautiful',
-    'cars',
-    'sunset',
-    'sky',
-    'night',
-    'galaxy',
-    'planets',
-    'paint',
-    'art',
-    'girls',
-    'sports',
-    'beer',
-    'food',
-    'black',
-    'blue',
-    'movies',
-    'tv shows',
-    'music'
-  ];
 
   int get currentIndex => _currentIndex;
 
@@ -159,18 +138,13 @@ class ReelsProvider extends ChangeNotifier {
     return queryWords[_random.nextInt(queryWords.length)];
   }
 
-  static const _authority = 'api.pexels.com';
-  static const _headers = {
-    'Authorization': 'c9P0gvk7SKSG0ypDARLPKSEHUEnNJJNAFvGwHnjoabJZLAzn3m9iEzT5'
-  };
-
   Future<bool> getPexelsVideos({int count = 0}) async {
-    print('PETICION A PEXELS');
+    print('PETICION A PEXELS Videos');
 
     final word = getSearchWord();
     // print('query: $word');
     final url = Uri.https(
-      _authority,
+      authority,
       '/videos/search',
       {
         'query': word,
@@ -180,7 +154,7 @@ class ReelsProvider extends ChangeNotifier {
       },
     );
 
-    var response = await http.get(url, headers: _headers);
+    var response = await http.get(url, headers: headers);
 
     if (response.statusCode != 200) return false;
 
