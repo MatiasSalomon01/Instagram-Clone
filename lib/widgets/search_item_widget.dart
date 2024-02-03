@@ -39,7 +39,11 @@ class SeachItem extends StatelessWidget {
                 showLikes: random.nextBool(),
                 totalLikes: random.nextInt(10000),
                 totalComments: random.nextInt(500),
-                createAt: DateTime.now(),
+                createAt: DateTime.utc(
+                  random.nextInt(20) + 2005,
+                  random.nextInt(13),
+                  random.nextInt(32),
+                ),
               ),
             ),
           ),
