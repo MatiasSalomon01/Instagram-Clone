@@ -30,7 +30,7 @@ class SeachItem extends StatelessWidget {
               model: ContentPostModel(
                 storyModel: StoryModel(
                   username: photo.photographer,
-                  profilePictureUrl: photo.src.medium,
+                  profilePictureUrl: photo.src.large,
                   isVerified: random.nextBool(),
                   hasStories: random.nextBool(),
                 ),
