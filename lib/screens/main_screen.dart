@@ -46,7 +46,10 @@ class _MainScreenState extends State<MainScreen> {
     var navigationProvider = context.watch<NavigatorProvider>();
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: navigationProvider.pageIndex != 3 ? const CustomAppBar() : null,
+      appBar: (navigationProvider.pageIndex == 3) ||
+              (navigationProvider.pageIndex == 1)
+          ? null
+          : const CustomAppBar(),
       body: PageView.builder(
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),

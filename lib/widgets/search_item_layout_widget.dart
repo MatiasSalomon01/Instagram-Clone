@@ -15,9 +15,13 @@ class SeachItemLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return index % 2 == 0
-        ? _LayoutWithVideo(index: index, photos: photos)
-        : _LayoutOnlyImages(photos: photos);
+    return Column(
+      children: [
+        _LayoutWithVideo(
+            isEven: index % 2 == 0, photos: photos.take(5).toList()),
+        _LayoutOnlyImages(photos: photos.skip(5).take(6).toList()),
+      ],
+    );
   }
 }
 
@@ -35,24 +39,24 @@ class _LayoutOnlyImages extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              SeachItem(photo: photos[0]),
-              SeachItem(photo: photos[1]),
+              SeachItem(url: photos[0].src.tiny),
+              SeachItem(url: photos[1].src.tiny),
             ],
           ),
         ),
         Expanded(
           child: Column(
             children: [
-              SeachItem(photo: photos[2]),
-              SeachItem(photo: photos[3]),
+              SeachItem(url: photos[2].src.tiny),
+              SeachItem(url: photos[3].src.tiny),
             ],
           ),
         ),
         Expanded(
           child: Column(
             children: [
-              SeachItem(photo: photos[4]),
-              SeachItem(photo: photos[5]),
+              SeachItem(url: photos[4].src.tiny),
+              SeachItem(url: photos[5].src.tiny),
             ],
           ),
         ),
@@ -64,28 +68,28 @@ class _LayoutOnlyImages extends StatelessWidget {
 class _LayoutWithVideo extends StatelessWidget {
   const _LayoutWithVideo({
     super.key,
-    required this.index,
+    required this.isEven,
     required this.photos,
   });
-  final int index;
+  final bool isEven;
   final List<Photos> photos;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        if (false)
+        if (!isEven)
           Expanded(
-            child: SeachItem(multiplier: 2, photo: photos[0]),
+            child: SeachItem(multiplier: 2, url: photos[0].src.portrait),
           ),
         Expanded(
           child: Column(
             children: [
               SeachItem(
-                photo: photos[1],
+                url: photos[1].src.tiny,
               ),
               SeachItem(
-                photo: photos[2],
+                url: photos[2].src.tiny,
               ),
             ],
           ),
@@ -94,17 +98,17 @@ class _LayoutWithVideo extends StatelessWidget {
           child: Column(
             children: [
               SeachItem(
-                photo: photos[3],
+                url: photos[3].src.tiny,
               ),
               SeachItem(
-                photo: photos[4],
+                url: photos[4].src.tiny,
               ),
             ],
           ),
         ),
-        if (true)
+        if (isEven)
           Expanded(
-            child: SeachItem(photo: photos[5], multiplier: 2),
+            child: SeachItem(url: photos[0].src.portrait, multiplier: 2),
           ),
       ],
     );

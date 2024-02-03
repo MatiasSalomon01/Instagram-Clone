@@ -50,7 +50,7 @@ class SearchProvider extends ChangeNotifier {
         // 'orientation': 'portrait',
         'page': '$page',
         // 'color': color,
-        'per_page': '24'
+        'per_page': '22'
       },
     );
 
@@ -61,8 +61,8 @@ class SearchProvider extends ChangeNotifier {
     var decodedBody = json.decode(response.body) as Map<String, dynamic>;
     var model = SearchModel.fromJson(decodedBody);
 
-    for (var i = 0; i < model.photos.length; i += 6) {
-      var values = model.photos.skip(i).take(6).toList();
+    for (var i = 0; i < model.photos.length; i += 11) {
+      var values = model.photos.skip(i).take(11).toList();
       urls.add(values);
     }
 

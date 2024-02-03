@@ -2,19 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/colors.dart';
 
-import '../models/models.dart';
-
 class SeachItem extends StatelessWidget {
   const SeachItem({
     super.key,
     this.height = 120,
     this.multiplier = 1,
-    required this.photo,
+    required this.url,
   });
 
   final double height;
   final double multiplier;
-  final Photos photo;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +20,14 @@ class SeachItem extends StatelessWidget {
       height: height * multiplier,
       decoration: BoxDecoration(
         color: grey,
-        border: Border.all(color: backgroundColor, width: 1),
+        border: Border.all(color: backgroundColor, width: .9),
       ),
       child: CachedNetworkImage(
-        imageUrl: photo.src.tiny,
+        errorWidget: (_, __, ___) => Image.network(
+          url,
+          fit: BoxFit.cover,
+        ),
+        imageUrl: url,
         placeholderFadeInDuration: const Duration(milliseconds: 500),
         fit: BoxFit.cover,
       ),
