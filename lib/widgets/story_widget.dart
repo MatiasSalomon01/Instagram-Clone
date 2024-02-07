@@ -6,22 +6,30 @@ import '../constants/colors.dart';
 import '../models/models.dart';
 
 class Story extends StatelessWidget {
-  const Story({super.key, required this.model});
+  const Story({
+    super.key,
+    required this.index,
+    required this.model,
+  });
 
+  final int index;
   final StoryModel model;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) {
-              return StoryScreen(model: model);
-            },
-          ),
-        );
+        if (model.hasStories) {
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) {
+                return StoryBuilder(index: index);
+                // return StoryScreen(model: model);
+              },
+            ),
+          );
+        }
       },
       child: Container(
         constraints: const BoxConstraints(maxWidth: 87),

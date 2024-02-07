@@ -52,8 +52,10 @@ class _StoriesState extends State<Stories> {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                itemBuilder: (context, index) =>
-                    Story(model: contentProvider.stories[index]),
+                itemBuilder: (context, index) => Story(
+                  index: index,
+                  model: contentProvider.stories[index],
+                ),
                 separatorBuilder: (context, index) => const HorizontalSpace(15),
               ),
             ),
