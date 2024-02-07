@@ -32,4 +32,9 @@ class StoryModel {
       profilePictureUrl: map['profilePictureUrl'],
     );
   }
+
+  @override
+  String toString() {
+    return 'id: $id, username: $username, isMe: $isMe, hasStories: $hasStories, isVerified: $isVerified, profilePictureUrl: $profilePictureUrl';
+  }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/screens/screens.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
 import '../constants/colors.dart';

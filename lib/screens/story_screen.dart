@@ -6,8 +6,16 @@ import 'package:instagram_clone/widgets/widgets.dart';
 import '../models/models.dart';
 
 class StoryScreen extends StatefulWidget {
-  const StoryScreen({super.key, required this.model});
+  const StoryScreen({
+    super.key,
+    required this.pageIndex,
+    required this.model,
+    required this.nextPage,
+  });
+
+  final int pageIndex;
   final StoryModel model;
+  final Function(int) nextPage;
 
   @override
   State<StoryScreen> createState() => _StoryScreenState();
@@ -69,9 +77,10 @@ class _StoryScreenState extends State<StoryScreen>
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12,
-                      horizontal: 15,
+                    padding: const EdgeInsets.only(
+                      top: 12,
+                      left: 15,
+                      right: 15,
                     ),
                     child: Row(
                       children: [
@@ -109,29 +118,59 @@ class _StoryScreenState extends State<StoryScreen>
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                child: SizedBox(
-                  height: 10,
-                  child: Row(
-                    children: List.generate(
-                      widget.model.stories.length,
-                      (index) => Expanded(
-                        child: AnimatedBuilder(
-                          animation: controller,
-                          builder: (context, child) => Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 1.5),
-                            child: Slider(
-                              value: index == currentIndex
-                                  ? controller.value
-                                  : map[index]!
-                                      ? 1
-                                      : 0.0,
-                              onChanged: (value) {},
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                      child: Row(
+                        children: List.generate(
+                          widget.model.stories.length,
+                          (index) => Expanded(
+                            child: AnimatedBuilder(
+                              animation: controller,
+                              builder: (context, child) => Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 1.5),
+                                child: Slider(
+                                  value: index == currentIndex
+                                      ? controller.value
+                                      : map[index]!
+                                          ? 1
+                                          : 0.0,
+                                  onChanged: (value) {},
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                    Row(
+                      children: [
+                        ProfilePicture(
+                          radius: 16,
+                          padding: 2,
+                          model: StoryModel(
+                            hasStories: false,
+                            username: widget.model.username,
+                            profilePictureUrl: widget.model.profilePictureUrl,
+                          ),
+                        ),
+                        const HorizontalSpace(5),
+                        Text(
+                          widget.model.username,
+                          style: const TextStyle(
+                            color: white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        if (widget.model.isVerified) ...[
+                          const HorizontalSpace(5),
+                          const Icon(Icons.verified, color: white, size: 18)
+                        ],
+                      ],
+                    )
+                  ],
                 ),
               ),
               GestureDetector(
@@ -183,6 +222,8 @@ class _StoryScreenState extends State<StoryScreen>
         }
       });
       load();
+    } else {
+      widget.nextPage(widget.pageIndex + 1);
     }
   }
 

@@ -19,7 +19,7 @@ class _StoriesState extends State<Stories> {
   void initState() {
     super.initState();
     scrollController = ScrollController();
-    scrollController.addListener(isAtFinalEdge);
+    // scrollController.addListener(isAtFinalEdge);
   }
 
   @override

@@ -8,7 +8,7 @@ class ContentProvider extends ChangeNotifier {
 
   final int _interval = 4;
   int _takeContent = 0;
-  int _takeStories = 0;
+  // int _takeStories = 0;
 
   bool isLoadingContent = false;
   bool isLoadingStories = false;
@@ -70,11 +70,11 @@ class ContentProvider extends ChangeNotifier {
         .from('Stories')
         .select('id, username, isMe, hasStories, isVerified, profilePictureUrl')
         .order('id', ascending: true)
-        .range(_takeStories, _takeStories + _interval)
+        // .range(_takeStories, _takeStories + _interval)
         .withConverter((data) => data.map(StoryModel.fromJson).toList());
 
     this.stories.addAll(stories);
-    _takeStories += _interval;
+    // _takeStories += _interval;
     finishLoaderStories();
   }
 
