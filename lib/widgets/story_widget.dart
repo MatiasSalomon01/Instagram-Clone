@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/screens/screens.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 
 import '../constants/colors.dart';
@@ -11,20 +12,32 @@ class Story extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 87),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ProfilePicture(model: model),
-          const VerticalSpace(5),
-          Text(
-            model.username,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: const TextStyle(color: white),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return StoryScreen(model: model);
+            },
           ),
-        ],
+        );
+      },
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 87),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ProfilePicture(model: model),
+            const VerticalSpace(5),
+            Text(
+              model.username,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: const TextStyle(color: white),
+            ),
+          ],
+        ),
       ),
     );
   }

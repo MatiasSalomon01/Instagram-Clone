@@ -5,6 +5,13 @@ class StoryModel {
   final bool hasStories;
   final bool isVerified;
   final String? profilePictureUrl;
+  final List<String> stories = [
+    'https://images.pexels.com/photos/354939/pexels-photo-354939.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+    'https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+    'https://images.pexels.com/photos/354939/pexels-photo-354939.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+    'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
+    'https://images.pexels.com/photos/1509534/pexels-photo-1509534.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800'
+  ];
 
   StoryModel({
     this.id,
