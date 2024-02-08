@@ -69,7 +69,7 @@ class _StoryScreenState extends State<StoryScreen>
                   SizedBox(
                     height: size.height * .85,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(5),
                       child: Image.network(
                         url,
                         fit: BoxFit.fill,
