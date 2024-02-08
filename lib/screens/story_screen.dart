@@ -145,6 +145,7 @@ class _StoryScreenState extends State<StoryScreen>
                         ),
                       ),
                     ),
+                    const VerticalSpace(8),
                     Row(
                       children: [
                         ProfilePicture(
@@ -207,6 +208,8 @@ class _StoryScreenState extends State<StoryScreen>
         url = widget.model.stories[currentIndex];
       });
       load();
+    } else {
+      widget.nextPage(widget.pageIndex - 1);
     }
   }
 
