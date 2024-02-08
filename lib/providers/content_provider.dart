@@ -73,6 +73,21 @@ class ContentProvider extends ChangeNotifier {
         // .range(_takeStories, _takeStories + _interval)
         .withConverter((data) => data.map(StoryModel.fromJson).toList());
 
+    var storiesUrls = await supabase
+        .from('StoriesUrls')
+        .select('*')
+        // .range(_takeStories, _takeStories + _interval)
+        .withConverter((data) => data.map((e) => e).toList());
+
+    stories.map((e) {
+      var storiesUrl =
+          storiesUrls.where((element) => element['storyId'] == e.id);
+      if (storiesUrl.isNotEmpty) {
+        e.stories = storiesUrl.map((e) => e['url'] as String).toList();
+      }
+      return e;
+    }).toList();
+
     this.stories.addAll(stories);
     // _takeStories += _interval;
     finishLoaderStories();

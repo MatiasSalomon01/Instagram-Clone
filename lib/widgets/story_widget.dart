@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/providers/providers.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/colors.dart';
 import '../models/models.dart';
@@ -18,7 +20,7 @@ class Story extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (model.hasStories) {
+        if (model.hasStories && model.stories.isNotEmpty) {
           Navigator.push(
             context,
             PageRouteBuilder(

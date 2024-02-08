@@ -5,13 +5,7 @@ class StoryModel {
   final bool hasStories;
   final bool isVerified;
   final String? profilePictureUrl;
-  final List<String> stories = [
-    'https://images.pexels.com/photos/354939/pexels-photo-354939.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
-    'https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
-    'https://images.pexels.com/photos/354939/pexels-photo-354939.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
-    'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',
-    'https://images.pexels.com/photos/1509534/pexels-photo-1509534.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800'
-  ];
+  List<String> stories;
 
   StoryModel({
     this.id,
@@ -20,6 +14,7 @@ class StoryModel {
     this.hasStories = false,
     this.isVerified = false,
     this.profilePictureUrl,
+    this.stories = const [],
   });
 
   factory StoryModel.fromJson(Map<String, dynamic> map) {
@@ -30,6 +25,10 @@ class StoryModel {
       hasStories: map['hasStories'],
       isVerified: map['isVerified'],
       profilePictureUrl: map['profilePictureUrl'],
+      // stories: map['StoriesUrls'] == null
+      //     ? []
+      //     : List<String>.from(map['StoriesUrls'].map((e) => e['url'] as String))
+      //         .toList(),
     );
   }
 

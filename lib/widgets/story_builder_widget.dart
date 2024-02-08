@@ -46,10 +46,10 @@ class _StoryBuilderState extends State<StoryBuilder> {
 
     final firstPart = content.stories
         .sublist(widget.index)
-        .where((model) => model.hasStories);
+        .where((model) => model.hasStories && model.stories.isNotEmpty);
     final secondPart = content.stories
         .sublist(0, widget.index)
-        .where((model) => model.hasStories);
+        .where((model) => model.hasStories && model.stories.isNotEmpty);
 
     stories.addAll(firstPart);
     stories.addAll(secondPart);
