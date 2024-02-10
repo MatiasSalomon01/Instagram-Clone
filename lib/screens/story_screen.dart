@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/constants/colors.dart';
 import 'package:instagram_clone/constants/icons.dart';
@@ -22,11 +23,16 @@ class StoryScreen extends StatefulWidget {
 }
 
 class _StoryScreenState extends State<StoryScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController controller;
+  late AnimationController fadeController;
+  late Animation fadeAnimation;
+
   int currentIndex = 0;
   late String url;
   Map<int, bool> map = {0: true};
+  bool isPaused = false;
+
   @override
   void initState() {
     super.initState();
@@ -41,16 +47,30 @@ class _StoryScreenState extends State<StoryScreen>
       duration: const Duration(seconds: 7),
     );
 
-    controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        nextStory();
-      }
-    });
+    fadeController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 250),
+        reverseDuration: const Duration(milliseconds: 250))
+      ..addListener(() {
+        setState(() {});
+      });
+
+    fadeAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(fadeController);
+
+    controller.addStatusListener(statusListener);
     controller.forward();
+  }
+
+  void statusListener(status) {
+    if (status == AnimationStatus.completed) {
+      nextStory();
+    }
   }
 
   @override
   void dispose() {
+    controller.removeStatusListener(statusListener);
+    fadeController.dispose();
     controller.dispose();
     super.dispose();
   }
@@ -72,106 +92,123 @@ class _StoryScreenState extends State<StoryScreen>
                       borderRadius: BorderRadius.circular(5),
                       child: Image.network(
                         url,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.fitHeight,
+                        // alignment: Alignment.topCenter,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 12,
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            cursorColor: white,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: transparent,
-                              contentPadding: const EdgeInsets.only(left: 20),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide:
-                                    const BorderSide(color: greyText, width: 1),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide:
-                                    const BorderSide(color: greyText, width: 1),
-                              ),
-                              hintText: 'Enviar mensaje',
-                              hintStyle:
-                                  const TextStyle(color: white, fontSize: 14),
-                            ),
-                          ),
+                  // if (!isPaused)
+                  AnimatedBuilder(
+                    animation: fadeAnimation,
+                    builder: (context, child) => Opacity(
+                      opacity: fadeAnimation.value,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 12,
+                          left: 15,
+                          right: 15,
                         ),
-                        const HorizontalSpace(20),
-                        const SvgString(icon: favoriteIcon),
-                        const HorizontalSpace(20),
-                        const SvgString(icon: shareIcon),
-                      ],
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                cursorColor: white,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: transparent,
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 20),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(
+                                        color: greyText, width: 1),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                    borderSide: const BorderSide(
+                                        color: greyText, width: 1),
+                                  ),
+                                  hintText: 'Enviar mensaje',
+                                  hintStyle: const TextStyle(
+                                      color: white, fontSize: 14),
+                                ),
+                              ),
+                            ),
+                            const HorizontalSpace(20),
+                            const SvgString(icon: favoriteIcon),
+                            const HorizontalSpace(20),
+                            const SvgString(icon: shareIcon),
+                          ],
+                        ),
+                      ),
                     ),
                   )
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                      child: Row(
-                        children: List.generate(
-                          widget.model.stories.length,
-                          (index) => Expanded(
-                            child: AnimatedBuilder(
-                              animation: controller,
-                              builder: (context, child) => Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 1.5),
-                                child: Slider(
-                                  value: index == currentIndex
-                                      ? controller.value
-                                      : map[index]!
-                                          ? 1
-                                          : 0.0,
-                                  onChanged: (value) {},
+              AnimatedBuilder(
+                animation: fadeAnimation,
+                builder: (context, child) => Opacity(
+                  opacity: fadeAnimation.value,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                          child: Row(
+                            children: List.generate(
+                              widget.model.stories.length,
+                              (index) => Expanded(
+                                child: AnimatedBuilder(
+                                  animation: controller,
+                                  builder: (context, child) => Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 1.5),
+                                    child: Slider(
+                                      value: index == currentIndex
+                                          ? controller.value
+                                          : map[index]!
+                                              ? 1
+                                              : 0.0,
+                                      onChanged: (value) {},
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    const VerticalSpace(8),
-                    Row(
-                      children: [
-                        ProfilePicture(
-                          radius: 16,
-                          padding: 2,
-                          model: StoryModel(
-                            hasStories: false,
-                            username: widget.model.username,
-                            profilePictureUrl: widget.model.profilePictureUrl,
-                          ),
-                        ),
-                        const HorizontalSpace(5),
-                        Text(
-                          widget.model.username,
-                          style: const TextStyle(
-                            color: white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        if (widget.model.isVerified) ...[
-                          const HorizontalSpace(5),
-                          const Icon(Icons.verified, color: white, size: 18)
-                        ],
+                        const VerticalSpace(8),
+                        Row(
+                          children: [
+                            ProfilePicture(
+                              radius: 16,
+                              padding: 2,
+                              model: StoryModel(
+                                hasStories: false,
+                                username: widget.model.username,
+                                profilePictureUrl:
+                                    widget.model.profilePictureUrl,
+                              ),
+                            ),
+                            const HorizontalSpace(5),
+                            Text(
+                              widget.model.username,
+                              style: const TextStyle(
+                                color: white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            if (widget.model.isVerified) ...[
+                              const HorizontalSpace(5),
+                              const Icon(Icons.verified, color: white, size: 18)
+                            ],
+                          ],
+                        )
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -184,6 +221,20 @@ class _StoryScreenState extends State<StoryScreen>
               ),
               GestureDetector(
                 onTap: nextStory,
+                onLongPress: () {
+                  controller.stop();
+                  fadeController.forward();
+                  setState(() {
+                    isPaused = !isPaused;
+                  });
+                },
+                onLongPressUp: () {
+                  controller.forward();
+                  fadeController.reverse();
+                  setState(() {
+                    isPaused = !isPaused;
+                  });
+                },
                 child: Container(
                   margin: const EdgeInsets.only(left: 70),
                   height: size.height * .85,
